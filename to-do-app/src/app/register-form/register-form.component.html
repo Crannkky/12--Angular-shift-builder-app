@@ -1,0 +1,58 @@
+<div class="form-container">
+  <form action="submit" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="first_name">First Name:</label>
+    <input type="text" name="first_name" formControlName="first_name" />
+
+    <div
+      *ngIf="
+        form.controls['first_name'].invalid &&
+        form.controls['first_name'].touched
+      "
+      class="error"
+    >
+      First Name is required
+    </div>
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" name="last_name" formControlName="last_name" />
+
+    <div
+      *ngIf="
+        form.controls['last_name'].invalid && form.controls['last_name'].touched
+      "
+      class="error"
+    >
+      Last Name is required
+    </div>
+
+    <label for="email_address">Email Address:</label>
+    <input type="email" name="email_address" formControlName="email_address" />
+
+    <div
+      *ngIf="
+        form.controls['email_address'].invalid &&
+        form.controls['email_address'].touched
+      "
+      class="error"
+    >
+      Email Address is required
+    </div>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" formControlName="password" />
+
+    <div
+      *ngIf="
+        form.controls['password'].invalid && form.controls['password'].touched
+      "
+      class="error"
+    >
+      Password is required
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+  <button type="button" (click)="redirectLogin()">
+    Already have an account! Proceed to Login page.
+  </button>
+</div>
