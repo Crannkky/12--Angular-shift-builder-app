@@ -1,5 +1,5 @@
 <div class="form-container">
-  <form action="submit" [formGroup]="form" (ngSubmit)="registerUser(form)">
+  <form action="submit" [formGroup]="form" (ngSubmit)="registerAdmin(form)">
     <label for="first_name">First Name:</label>
     <input type="text" name="first_name" formControlName="first_name" />
 
@@ -48,6 +48,17 @@
       class="error"
     >
       Password is required
+    </div>
+    <label for="admin_token">Admin token:</label>
+    <input type="text" name="admin_token" formControlName="admin_token" />
+    <div
+      *ngIf="
+        form.controls['admin_token'].invalid &&
+        form.controls['admin_token'].touched
+      "
+      class="error"
+    >
+      Admin token is required
     </div>
 
     <button type="submit">Submit</button>

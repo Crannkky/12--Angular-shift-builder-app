@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { uuidv4 } from '@firebase/util';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../shared/auth.admin.service';
 
 @Component({
-  selector: 'app-register-form',
-  templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.scss'],
+  selector: 'app-register-admin-form',
+  templateUrl: './register-admin-form.component.html',
+  styleUrls: ['./register-admin-form.component.scss'],
 })
-export class RegisterFormComponent implements OnInit {
-  user: any = {
+export class RegisterAdminFormComponent implements OnInit {
+  admin: any = {
     first_name: '',
     last_name: '',
     email_address: '',
     password: '',
+    admin_token: '',
   };
 
   constructor(
@@ -32,21 +33,22 @@ export class RegisterFormComponent implements OnInit {
       last_name: ['', Validators.required],
       email_address: ['', Validators.required],
       password: ['', Validators.required],
+      admin_token: ['', Validators.required],
+      is_admin: 'true',
     });
   }
 
-  registerUser(form: any) {
-    this.authService.registerUser(form.value);
+  registerAdmin(form: any) {
+    this.authService.registerAdmin(form.value);
     console.log(this.form.value);
-    console.log('Data registered successfully');
+    console.log('Admin account created!');
   }
 
   onSubmit() {
-    console.log(this.form);
-    console.log(this.form.value.email_address);
+    console.log(this.form), console.log(this.form.value.email_address);
   }
 
-  redirectLogin() {
-    this.router.navigate(['/login']);
+  redirectAdmin() {
+    this.router.navigate(['/admin.login']);
   }
 }

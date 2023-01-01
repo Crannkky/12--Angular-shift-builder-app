@@ -1,1 +1,51 @@
-<p>login-form works!</p>
+<div class="form__container">
+  <h3>Log In</h3>
+  <div class="form__group">
+    <input
+      type="text"
+      class="formControl"
+      placeholder="Email address..."
+      #email_address
+      required
+    />
+  </div>
+  <div class="form__group">
+    <input
+      type="password"
+      class="formControl"
+      placeholder="Password..."
+      #password
+      required
+    />
+  </div>
+  <div class="formGroup">
+    <input
+      type="button"
+      class="btn btnPrimary"
+      value="Log In"
+      (click)="authService.LogIn(email_address.value, password.value)"
+    />
+  </div>
+  <div class="formGroup">
+    <span class="or">Or</span>
+  </div>
+  <div class="formGroup">
+    <button
+      type="button"
+      class="btn googleBtn"
+      (click)="authService.GoogleAuth()"
+    >
+      Log In with Google
+    </button>
+  </div>
+  <div class="forgotPassword">
+    <button (click)="redirectForgotPass()" type="button" class="forgot__btn">
+      Forgot Password?
+    </button>
+  </div>
+  <div class="formGroup">
+    <button (click)="redirectLogin()" class="redirect__btn">
+      Don't have an account? Register here!
+    </button>
+  </div>
+</div>
