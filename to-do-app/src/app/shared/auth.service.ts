@@ -38,9 +38,9 @@ export class AuthService {
     });
   }
 
-  LogIn(email_address: string, password: string) {
+  LogIn(email: string, password: string) {
     return this.afAuth
-      .signInWithEmailAndPassword(email_address, password)
+      .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
@@ -54,13 +54,14 @@ export class AuthService {
       });
   }
 
-  Register(email_address: string, password: string) {
+  Register(email: string, password: string) {
     return this.afAuth
-      .createUserWithEmailAndPassword(email_address, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SendVerificationEmail();
         this.SetUserData(result.user);
         this.router.navigate(['/login']);
+        console.log(result.user);
       })
       .catch((error) => {
         console.log(error.message);
@@ -119,6 +120,7 @@ export class AuthService {
       `users/${user.uid}`
     );
     const userData: User = {
+      displayName: user.displayName,
       uid: user.uid,
       email: user.email,
     };
@@ -133,27 +135,31 @@ export class AuthService {
     });
   }
 
-  ///////////////
-
-  // functions for storing the entire data of the user in the Database not just the authentification
-
-  registerUser(user: any) {
-    this.firestoreCollection.add({
-      uid: user.uid,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email: user.email,
-      password: user.password,
-    });
-  }
-
-  updateUser(user: any) {
-    this.firestoreCollection
-      .doc(user.uid)
-      .update({ password: user.password, email: user.email });
-  }
-
-  deleteUser(user: any) {
-    this.firestoreCollection.doc(user.uid).delete();
+  redirectLogin() {
+    this.router.navigate(['/login']);
   }
 }
+///////////////
+
+// functions for storing the entire data of the user in the Database not just the authentification
+
+//   registerUser(user: any) {
+//     this.firestoreCollection.add({
+//       uid: user.uid,
+//       first_name: user.first_name,
+//       last_name: user.last_name,
+//       email: user.email,
+//       password: user.password,
+//     });
+//   }
+
+//   updateUser(user: any) {
+//     this.firestoreCollection
+//       .doc(user.uid)
+//       .update({ password: user.password, email: user.email });
+//   }
+
+//   deleteUser(user: any) {
+//     this.firestoreCollection.doc(user.uid).delete();
+//   }
+// }

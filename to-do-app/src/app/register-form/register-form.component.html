@@ -2,33 +2,12 @@
   <div class="displayTabCell">
     <div class="authBlock">
       <h3>Register</h3>
-      <form action="submit" [formGroup]="form" (ngSubmit)="registerUser(form)">
-        <div class="formGroup">
-          <input
-            type="text"
-            class="formControl"
-            placeholder="First Name..."
-            formControlName="first_name"
-            #first_name
-            required
-          />
-        </div>
-        <div class="formGroup">
-          <input
-            type="text"
-            class="formControl"
-            placeholder="Last Name..."
-            formControlName="last_name"
-            #last_name
-            required
-          />
-        </div>
+      <form action="submit">
         <div class="formGroup">
           <input
             type="email"
             class="formControl"
             placeholder="Email Address..."
-            formControlName="email"
             #email
             required
           />
@@ -38,7 +17,6 @@
             type="password"
             class="formControl"
             placeholder="Password..."
-            formControlName="password"
             #password
             required
           />
@@ -64,7 +42,7 @@
           </button>
         </div>
       </form>
-      <button type="button" class="btn" (click)="redirectLogin()">
+      <button type="button" class="btn" (click)="authService.redirectLogin()">
         Already have an account? Login here!
       </button>
     </div>
