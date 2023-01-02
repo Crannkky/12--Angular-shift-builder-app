@@ -1,56 +1,72 @@
-<div class="form-container">
-  <form action="submit" [formGroup]="form" (ngSubmit)="registerUser(form)">
-    <label for="first_name">First Name:</label>
-    <input type="text" name="first_name" formControlName="first_name" />
-
-    <div
-      *ngIf="
-        form.controls['first_name'].invalid &&
-        form.controls['first_name'].touched
-      "
-      class="error"
-    >
-      First Name is required
+<div class="displayTable">
+  <div class="displayTabCell">
+    <div class="authBlock">
+      <h3>Register</h3>
+      <form action="submit" [formGroup]="form" (ngSubmit)="registerUser(form)">
+        <div class="formGroup">
+          <input
+            type="text"
+            class="formControl"
+            placeholder="First Name..."
+            formControlName="first_name"
+            #first_name
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="text"
+            class="formControl"
+            placeholder="Last Name..."
+            formControlName="last_name"
+            #last_name
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="email"
+            class="formControl"
+            placeholder="Email Address..."
+            formControlName="email"
+            #email
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="password"
+            class="formControl"
+            placeholder="Password..."
+            formControlName="password"
+            #password
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="submit"
+            class="btn btnPrimary"
+            value="Register"
+            (click)="authService.Register(email.value, password.value)"
+          />
+        </div>
+        <div class="formGroup">
+          <span class="or">Or</span>
+        </div>
+        <div class="formGroup">
+          <button
+            type="button"
+            class="btn googleBtn"
+            (click)="authService.GoogleAuth()"
+          >
+            Continue with Google
+          </button>
+        </div>
+      </form>
+      <button type="button" class="btn" (click)="redirectLogin()">
+        Already have an account? Login here!
+      </button>
     </div>
-
-    <label for="last_name">Last Name:</label>
-    <input type="text" name="last_name" formControlName="last_name" />
-
-    <div
-      *ngIf="
-        form.controls['last_name'].invalid && form.controls['last_name'].touched
-      "
-      class="error"
-    >
-      Last Name is required
-    </div>
-
-    <label for="email_address">Email Address:</label>
-    <input type="email" name="email_address" formControlName="email_address" />
-
-    <div
-      *ngIf="
-        form.controls['email_address'].invalid &&
-        form.controls['email_address'].touched
-      "
-      class="error"
-    >
-      Email Address is required
-    </div>
-
-    <label for="password">Password:</label>
-    <input type="password" name="password" formControlName="password" />
-
-    <div
-      *ngIf="
-        form.controls['password'].invalid && form.controls['password'].touched
-      "
-      class="error"
-    >
-      Password is required
-    </div>
-
-    <button type="submit">Submit</button>
-  </form>
-  <button type="button">Already have an account! Proceed to Login page.</button>
+  </div>
 </div>

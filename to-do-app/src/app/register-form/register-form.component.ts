@@ -11,26 +11,27 @@ import { AuthService } from '../shared/auth.service';
 })
 export class RegisterFormComponent implements OnInit {
   user: any = {
+    uid: '',
     first_name: '',
     last_name: '',
-    email_address: '',
+    email: '',
     password: '',
   };
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    public authService: AuthService
   ) {}
 
   form: FormGroup;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      id: uuidv4(),
+      uid: uuidv4(),
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      email_address: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }

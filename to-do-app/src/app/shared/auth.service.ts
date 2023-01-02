@@ -8,7 +8,6 @@ import {
 } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +45,7 @@ export class AuthService {
         this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
           }
         });
       })
@@ -61,6 +60,7 @@ export class AuthService {
       .then((result) => {
         this.SendVerificationEmail();
         this.SetUserData(result.user);
+        this.router.navigate(['/login']);
       })
       .catch((error) => {
         console.log(error.message);
@@ -69,9 +69,10 @@ export class AuthService {
 
   SendVerificationEmail() {
     return this.afAuth.currentUser
-      .then((u: any) => u.sendVerificationMail())
+      .then((u: any) => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['verify-email-address']);
+        // this.router.navigate(['verify-email-address']);
+        console.log('Verification email sent!');
       });
   }
 
@@ -93,7 +94,7 @@ export class AuthService {
 
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     });
   }
 
@@ -103,7 +104,7 @@ export class AuthService {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
         this.SetUserData(result.user);
       })
       .catch((error) => {
@@ -115,23 +116,14 @@ export class AuthService {
 
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.id}`
+      `users/${user.uid}`
     );
     const userData: User = {
-      id: user.id,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email_address: user.email_address,
-      password: user.password,
+      uid: user.uid,
+      email: user.email,
     };
-    return (
-      userRef.set(userData),
-      {
-        merge: true,
-      }
-    );
+    return userRef.set(userData, { merge: true });
   }
-
   // Log-out function that removes the user details from localstorage which we use so that we can idnetify logged in users
 
   LogOut() {
@@ -143,23 +135,25 @@ export class AuthService {
 
   ///////////////
 
+  // functions for storing the entire data of the user in the Database not just the authentification
+
   registerUser(user: any) {
     this.firestoreCollection.add({
-      id: user.id,
+      uid: user.uid,
       first_name: user.first_name,
       last_name: user.last_name,
-      email_address: user.email_address,
+      email: user.email,
       password: user.password,
     });
   }
 
   updateUser(user: any) {
     this.firestoreCollection
-      .doc(user.id)
-      .update({ password: user.password, email_address: user.email_address });
+      .doc(user.uid)
+      .update({ password: user.password, email: user.email });
   }
 
   deleteUser(user: any) {
-    this.firestoreCollection.doc(user.id).delete();
+    this.firestoreCollection.doc(user.uid).delete();
   }
 }

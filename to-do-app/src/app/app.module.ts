@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { RegisterAdminFormComponent } from './register-admin-form/register-admin-form.component';
 import { LoginAdminFormComponent } from './login-admin-form/login-admin-form.component';
 import { AuthService } from './shared/auth.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthService } from './shared/auth.service';
     RegisterFormComponent,
     RegisterAdminFormComponent,
     LoginAdminFormComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
