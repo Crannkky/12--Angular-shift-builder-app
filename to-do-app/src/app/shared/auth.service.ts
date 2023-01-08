@@ -45,7 +45,7 @@ export class AuthService {
         this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/']);
           }
         });
       })
@@ -90,8 +90,10 @@ export class AuthService {
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified != false ? true : false;
+    return user !== null;
   }
+
+  // && user.emailVerified != false ? true : false
 
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
@@ -120,9 +122,11 @@ export class AuthService {
       `users/${user.uid}`
     );
     const userData: User = {
-      displayName: user.displayName,
       uid: user.uid,
       email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified,
     };
     return userRef.set(userData, { merge: true });
   }
@@ -140,26 +144,3 @@ export class AuthService {
   }
 }
 ///////////////
-
-// functions for storing the entire data of the user in the Database not just the authentification
-
-//   registerUser(user: any) {
-//     this.firestoreCollection.add({
-//       uid: user.uid,
-//       first_name: user.first_name,
-//       last_name: user.last_name,
-//       email: user.email,
-//       password: user.password,
-//     });
-//   }
-
-//   updateUser(user: any) {
-//     this.firestoreCollection
-//       .doc(user.uid)
-//       .update({ password: user.password, email: user.email });
-//   }
-
-//   deleteUser(user: any) {
-//     this.firestoreCollection.doc(user.uid).delete();
-//   }
-// }

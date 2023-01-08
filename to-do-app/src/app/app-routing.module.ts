@@ -4,12 +4,21 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { RegisterAdminFormComponent } from './register-admin-form/register-admin-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { TodoComponent } from './todo/todo.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
+  { path: '', component: HomepageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
   { path: 'admin/register', component: RegisterAdminFormComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'todo', component: TodoComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
