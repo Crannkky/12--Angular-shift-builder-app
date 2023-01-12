@@ -182,6 +182,7 @@ export class AuthService {
       date: shift.date,
       startTime: shift.startTime,
       endTime: shift.endTime,
+      totalHours: shift.totalHours,
       hourlyWage: shift.hourlyWage,
       workPlace: shift.workPlace,
       shiftName: shift.shiftName,

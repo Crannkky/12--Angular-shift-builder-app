@@ -8,9 +8,24 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
-  item;
+  shifts;
 
-  constructor(db: AngularFirestore) {}
+  constructor(db: AngularFirestore) {
+    const loggedUser = JSON.parse(window.localStorage.getItem('user'));
+    db.collection('shifts', (ref) =>
+      ref.where('createdBy', '==', loggedUser.email)
+    )
+      .valueChanges()
+      .subscribe((data) => {
+        if (data.length > 0) {
+          this.shifts = data;
+          console.log(data);
+        } else {
+          console.log('No data found');
+          console.log(loggedUser);
+        }
+      });
+  }
 
   ngOnInit(): void {}
 }
