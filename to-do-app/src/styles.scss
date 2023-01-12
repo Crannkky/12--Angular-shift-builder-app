@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;700&display=swap");
+// variables for main colors
+$primary-beige: #f0ebe3;
+$secondary-beige: #e4dccf;
+$primary-green: #7d9d9c;
+$secondary-green: #576f72;
+$background-green: #b2beb5;
+$background-gray: #ececec;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto Slab, Roboto;
+}
+
+body {
+  background-color: $primary-beige;
+}

@@ -1,0 +1,46 @@
+<div class="line"></div>
+<nav class="nav">
+  <div class="nav__component">
+    <ul class="nav__component__list">
+      <li class="nav__component__list__element">
+        <a routerLink="/" class="nav__component__list__element__link"
+          >Homepage</a
+        >
+      </li>
+      <li class="nav__component__list__element">
+        <a routerLink="/dashboard" class="nav__component__list__element__link"
+          >My Profile</a
+        >
+      </li>
+      <li class="nav__component__list__element">
+        <a routerLink="/add-shift" class="nav__component__list__element__link"
+          >Add</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="nav__component">
+    <img
+      class="nav__component__logo"
+      src="../../assets/logo_no_bck.png"
+      alt="todoro-logo"
+    />
+  </div>
+  <div class="nav__component">
+    <div>
+      <p class="nav__component__name" *ngIf="item">
+        Welcome, {{ item.firstName }} !
+      </p>
+    </div>
+
+    <button class="nav__component__btn" type="button">
+      <fa-icon
+        class="nav__component__btn__icon"
+        [icon]="faPersonThroughWindow"
+        size="2x"
+        [style]="{ stroke: '#e4dccf' }"
+        (click)="authService.LogOut()"
+      ></fa-icon>
+    </button>
+  </div>
+</nav>

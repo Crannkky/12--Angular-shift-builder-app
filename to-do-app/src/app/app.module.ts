@@ -16,6 +16,10 @@ import { RegisterAdminFormComponent } from './register-admin-form/register-admin
 import { LoginAdminFormComponent } from './login-admin-form/login-admin-form.component';
 import { AuthService } from './shared/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomepageComponent } from './homepage/homepage.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddShiftComponent } from './add-shift/add-shift.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegisterAdminFormComponent,
     LoginAdminFormComponent,
     DashboardComponent,
+    HomepageComponent,
+    NavbarComponent,
+    AddShiftComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,12 +40,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(
       environment.firebaseConfig,
-      'to-do-app-angular'
+      'fullstack-shift-builder'
     ),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    FontAwesomeModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
