@@ -1,0 +1,125 @@
+<app-navbar></app-navbar>
+<div class="add-shift__container">
+  <div class="add-shift__container__element">
+    <h3 class="add-shift__container__element__title">Add a new shift</h3>
+  </div>
+  <div class="add-shift__container__element">
+    <form
+      action="submit"
+      class="add-shift__container__element__form"
+      [formGroup]="form"
+      (ngSubmit)="addShift(form)"
+    >
+      <div class="add-shift__container__element__form__group">
+        <label
+          class="add-shift__container__element__form__group__label"
+          for="date"
+          >Shift start date:</label
+        >
+        <input
+          class="add-shift__container__element__form__group__input"
+          type="date"
+          name="date"
+          formControlName="date"
+          #date
+        />
+      </div>
+      <div class="add-shift__container__element__form__group">
+        <label
+          class="add-shift__container__element__form__group__label"
+          for="startTime"
+          >Shift start hour:</label
+        >
+        <input
+          class="add-shift__container__element__form__group__input"
+          type="time"
+          name="startTime"
+          formControlName="startTime"
+          #startTime
+        />
+      </div>
+      <div class="add-shift__container__element__form__group">
+        <label
+          class="add-shift__container__element__form__group__label"
+          for="endTime"
+          >Shift end hour:</label
+        >
+        <input
+          class="add-shift__container__element__form__group__input"
+          type="time"
+          name="endTime"
+          formControlName="endTime"
+          #endtime
+        />
+      </div>
+      <div class="add-shift__container__element__form__group">
+        <label
+          class="add-shift__container__element__form__group__label"
+          for="hourlyWage"
+          >Hourly Wage:</label
+        >
+        <input
+          class="add-shift__container__element__form__group__input"
+          type="number"
+          name="hourlyWage"
+          formControlName="hourlyWage"
+          #hourlyWage
+        />
+      </div>
+      <div class="add-shift__container__element__form__group">
+        <label
+          class="add-shift__container__element__form__group__label"
+          for="workPlace"
+          >Shift Location:</label
+        >
+        <select
+          class="add-shift__container__element__form__group__select"
+          name="workPlace"
+          formControlName="workPlace"
+          #workPlace
+        >
+          <option value="The Office">The Office</option>
+          <option value="The Warehouse">The Warehouse</option>
+          <option value="On Site">On Site</option>
+        </select>
+      </div>
+      <div class="add-shift__container__element__form__group">
+        <label
+          class="add-shift__container__element__form__group__label"
+          for="shiftName"
+          >Shift name::</label
+        >
+        <input
+          class="add-shift__container__element__form__group__input"
+          type="text"
+          name="shiftName"
+          formControlName="shiftName"
+          #shiftName
+        />
+      </div>
+      <div class="add-shift__container__element__form__group">
+        <label
+          class="add-shift__container__element__form__group__label"
+          for="date"
+          >Comments:</label
+        >
+        <textarea
+          class="add-shift__container__element__form__group__input"
+          rows="5"
+          cols="20"
+          name="comments"
+          formControlName="comments"
+          #comments
+        ></textarea>
+      </div>
+      <div class="add-shift__container__element__form__group">
+        <button
+          class="add-shift__container__element__form__group__btn"
+          type="submit"
+        >
+          Add Shift
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

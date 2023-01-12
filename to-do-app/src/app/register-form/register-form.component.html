@@ -9,14 +9,52 @@
     <h3 class="register__container__title">Register</h3>
   </div>
 
-  <form class="register__container__form" action="submit">
+  <form
+    [formGroup]="form"
+    class="register__container__form"
+    action="submit"
+    (ngSubmit)="registerUserDb(form)"
+  >
     <div class="register__container__form__group">
       <input
         type="email"
         class="register__container__form__group__input"
         placeholder="Email Address..."
         #email
+        formControlName="email"
+        name="email"
+        id="email"
         required
+      />
+    </div>
+    <div class="register__container__form__group">
+      <input
+        type="text"
+        class="register__container__form__group__input"
+        placeholder="First Name..."
+        #firstName
+        required
+        formControlName="firstName"
+      />
+    </div>
+    <div class="register__container__form__group">
+      <input
+        type="text"
+        class="register__container__form__group__input"
+        placeholder="Last Name..."
+        #lastName
+        required
+        formControlName="lastName"
+      />
+    </div>
+    <div class="register__container__form__group">
+      <input
+        type="number"
+        class="register__container__form__group__input"
+        placeholder="Age.."
+        #age
+        required
+        formControlName="age"
       />
     </div>
     <div class="register__container__form__group">
@@ -26,6 +64,7 @@
         placeholder="Password..."
         #password
         required
+        formControlName="password"
       />
     </div>
     <div class="register__container__form__group">

@@ -8,13 +8,13 @@
         >
       </li>
       <li class="nav__component__list__element">
-        <a routerLink="/todo" class="nav__component__list__element__link"
-          >My ToDo List</a
+        <a routerLink="/dashboard" class="nav__component__list__element__link"
+          >My Profile</a
         >
       </li>
       <li class="nav__component__list__element">
-        <a routerLink="/dashboard" class="nav__component__list__element__link"
-          >My Account</a
+        <a routerLink="/add-shift" class="nav__component__list__element__link"
+          >Add</a
         >
       </li>
     </ul>
@@ -27,6 +27,12 @@
     />
   </div>
   <div class="nav__component">
+    <div>
+      <p class="nav__component__name" *ngIf="item">
+        Welcome, {{ item.firstName }} !
+      </p>
+    </div>
+
     <button class="nav__component__btn" type="button">
       <fa-icon
         class="nav__component__btn__icon"

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodoComponent } from './todo.component';
+import { AddShiftComponent } from './add-shift.component';
 
-describe('TodoComponent', () => {
-  let component: TodoComponent;
-  let fixture: ComponentFixture<TodoComponent>;
+describe('AddShiftComponent', () => {
+  let component: AddShiftComponent;
+  let fixture: ComponentFixture<AddShiftComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoComponent ]
+      declarations: [ AddShiftComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TodoComponent);
+    fixture = TestBed.createComponent(AddShiftComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

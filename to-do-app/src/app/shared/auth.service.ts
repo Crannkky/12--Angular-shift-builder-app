@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from './user';
+import { UserAuth } from './user';
+import { Shift } from './shift.interface';
 import * as auth from 'firebase/auth';
 import {
   AngularFirestore,
@@ -15,6 +16,8 @@ import { Router } from '@angular/router';
 export class AuthService {
   userData: any;
   firestoreCollection: AngularFirestoreCollection;
+  firestoreCollectionAuth: AngularFirestoreCollection;
+  firestoreCollectionShifts: AngularFirestoreCollection;
 
   constructor(
     private firestore: AngularFirestore,
@@ -25,6 +28,8 @@ export class AuthService {
     public ngZone: NgZone
   ) {
     this.firestoreCollection = firestore.collection('users');
+    this.firestoreCollectionAuth = firestore.collection('usersAuth');
+    this.firestoreCollectionShifts = firestore.collection('shifts');
     this.userData = angularFireAuth.authState;
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -119,9 +124,9 @@ export class AuthService {
 
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
+      `usersAuth/${user.uid}`
     );
-    const userData: User = {
+    const userData: UserAuth = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
@@ -139,8 +144,50 @@ export class AuthService {
     });
   }
 
+  registerUser(user: any) {
+    this.firestoreCollection.add({
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      age: user.age,
+      password: user.password,
+      isAdmin: false,
+    });
+  }
+
+  updateUser(user: any, uid: any) {
+    this.firestoreCollectionAuth.doc(uid).update({ password: user.password });
+    this.userData
+      .updatePassword(user.password)
+      .then(() => {
+        console.log('Password updated successfully');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(user.email);
+  }
+
+  deleteUser(user: any) {
+    this.firestoreCollection.doc(user.uid).delete();
+  }
+
   redirectLogin() {
     this.router.navigate(['/login']);
+  }
+
+  addShift(shift: Shift, creator: string) {
+    this.firestoreCollectionShifts.add({
+      date: shift.date,
+      startTime: shift.startTime,
+      endTime: shift.endTime,
+      hourlyWage: shift.hourlyWage,
+      workPlace: shift.workPlace,
+      shiftName: shift.shiftName,
+      comments: shift.comments,
+      createdBy: creator,
+    });
   }
 }
 ///////////////

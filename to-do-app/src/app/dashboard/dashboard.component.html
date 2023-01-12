@@ -9,14 +9,32 @@
       alt="{{ user.displayName }}"
     />
     <div class="profile__container__element__data">
-      <form action="submit" class="profile__container__element__data__form">
+      <form
+        action="submit"
+        class="profile__container__element__data__form"
+        [formGroup]="form"
+        (ngSubmit)="updateUserDb(form)"
+      >
         <div class="profile__container__element__data__form__group">
-          <label for="display-name">Display Name:</label>
+          <label for="firstName">First Name:</label>
           <input
-            name="display-name"
+            name="firstName"
             type="text"
-            class="profile__container__element__data__form__grouop__input"
-            value="{{ user.displayName ? user.displayName : 'User' }}"
+            class="profile__container__element__data__form__group__input"
+            *ngIf="item"
+            value="{{ item.firstName }}"
+            readonly
+          />
+        </div>
+        <div class="profile__container__element__data__form__group">
+          <label for="lastName">Last Name:</label>
+          <input
+            name="lastName"
+            type="text"
+            class="profile__container__element__data__form__group__input"
+            *ngIf="item"
+            value="{{ item.lastName }}"
+            readonly
           />
         </div>
         <div class="profile__container__element__data__form__group">
@@ -25,7 +43,21 @@
             name="uuid"
             type="text"
             class="profile__container__element__data__form__group__input"
-            value="{{ user.uid }}"
+            *ngIf="item"
+            value="{{ item.id }}"
+            #id
+            id="id"
+            readonly
+          />
+        </div>
+        <div class="profile__container__element__data__form__group">
+          <label for="age">Age:</label>
+          <input
+            name="age"
+            type="number"
+            class="profile__container__element__data__form__group__input"
+            *ngIf="item"
+            value="{{ item.age }}"
             readonly
           />
         </div>
@@ -35,18 +67,28 @@
             name="email"
             type="email"
             class="profile__container__element__data__form__group__input"
-            value="{{ user.email }}"
+            *ngIf="item"
+            value="{{ item.email }}"
+            id="email"
+            #email
           />
         </div>
         <div class="profile__container__element__data__form__group">
-          <label for="email_verified">Email verified:</label>
+          <label for="password">Change password:</label>
           <input
-            name="email_verified"
-            type="text"
+            name="password"
+            type="password"
             class="profile__container__element__data__form__group__input"
-            value="{{ user.emailVerified }}"
-            readonly
+            formControlName="password"
           />
+        </div>
+        <div class="profile__container__element__data__form__group">
+          <button
+            class="profile__container__element__data__form__group__btn"
+            type="submit"
+          >
+            Update profile
+          </button>
         </div>
       </form>
     </div>

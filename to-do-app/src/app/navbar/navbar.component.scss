@@ -18,7 +18,15 @@
     align-items: center;
     background-color: $secondary-beige;
 
+    &__name {
+      font-size: 14px;
+      background-color: $secondary-beige;
+      color: $primary-green;
+      padding-right: 20px;
+    }
+
     &__list {
+      width: 250px;
       padding: 10px;
       font-size: 12px;
       list-style: none;
@@ -46,7 +54,7 @@
     &__logo {
       height: 80px;
       background-color: $secondary-beige;
-      margin-right: 190px;
+      margin-right: 40px;
     }
 
     &__btn {

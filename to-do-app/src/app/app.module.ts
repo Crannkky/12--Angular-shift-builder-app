@@ -19,7 +19,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TodoComponent } from './todo/todo.component';
+import { AddShiftComponent } from './add-shift/add-shift.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { TodoComponent } from './todo/todo.component';
     DashboardComponent,
     HomepageComponent,
     NavbarComponent,
-    TodoComponent,
+    AddShiftComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +40,7 @@ import { TodoComponent } from './todo/todo.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(
       environment.firebaseConfig,
-      'to-do-app-angular'
+      'fullstack-shift-builder'
     ),
     AngularFirestoreModule,
     AngularFireAuthModule,

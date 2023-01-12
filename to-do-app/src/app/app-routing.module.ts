@@ -5,7 +5,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { RegisterAdminFormComponent } from './register-admin-form/register-admin-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { TodoComponent } from './todo/todo.component';
+import { AddShiftComponent } from './add-shift/add-shift.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'todo', component: TodoComponent, canActivate: [AuthGuard] },
+  { path: 'add-shift', component: AddShiftComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
