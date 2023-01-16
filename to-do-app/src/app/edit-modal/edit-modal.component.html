@@ -1,0 +1,128 @@
+<ng-container *ngIf="display$ | async as display">
+  <section [class.open]="display === 'open'" (click)="close()">
+    <div (click)="$event.stopPropagation()" class="modal__container">
+      <button class="close" type="button" (click)="close()">X</button>
+      <div class="modal__container__element">
+        <form class="modal__container__element__form" [formGroup]="form">
+          <div class="modal__container__element__form__group">
+            <label
+              for="date"
+              class="modal__container__element__form__group__label"
+              >Date:</label
+            >
+            <input
+              type="date"
+              class="modal__container__element__form__group__input"
+              formControlName="date"
+            />
+          </div>
+          <div class="modal__container__element__form__group">
+            <label
+              for="startTime"
+              class="modal__container__element__form__group__label"
+              >Start Time:</label
+            >
+            <input
+              type="time"
+              class="modal__container__element__form__group__input"
+              formControlName="startTime"
+            />
+          </div>
+          <div class="modal__container__element__form__group">
+            <label
+              for="endTime"
+              class="modal__container__element__form__group__label"
+              >End Time:</label
+            >
+            <input
+              type="time"
+              class="modal__container__element__form__group__input"
+              formControlName="endTime"
+            />
+          </div>
+          <div class="modal__container__element__form__group">
+            <label
+              for="totalHours"
+              class="modal__container__element__form__group__label"
+              >Total Hours:</label
+            >
+            <input
+              type="number"
+              class="modal__container__element__form__group__input"
+              formControlName="totalHours"
+            />
+          </div>
+          <div class="modal__container__element__form__group">
+            <label
+              for="hourlyWage"
+              class="modal__container__element__form__group__label"
+              >Hourly Wage:</label
+            >
+            <input
+              type="number"
+              class="modal__container__element__form__group__input"
+              formControlName="hourlyWage"
+            />
+          </div>
+          <div class="modal__container__element__form__group">
+            <label
+              for="workPlace"
+              class="modal__container__element__form__group__label"
+              >Workplace:</label
+            >
+            <select
+              type="number"
+              class="modal__container__element__form__group__select"
+              formControlName="workPlace"
+            >
+              <option value="The Office">The Office</option>
+              <option value="The Warehouse">The Warehouse</option>
+              <option value="On Site">On Site</option>
+            </select>
+          </div>
+          <div class="modal__container__element__form__group">
+            <label
+              for="shiftName"
+              class="modal__container__element__form__group__label"
+            >
+              Shift Name:</label
+            >
+            <input
+              type="text"
+              class="modal__container__element__form__group__input"
+              formControlName="shiftName"
+            />
+          </div>
+          <div class="modal__container__element__form__group">
+            <label
+              for="comments"
+              class="modal__container__element__form__group__label"
+            >
+              Comments:</label
+            >
+            <input
+              type="text"
+              class="modal__container__element__form__group__input"
+              formControlName="comments"
+            />
+          </div>
+          <div class="modal__container__element__form__group">
+            <label
+              for="totalProfit"
+              class="modal__container__element__form__group__label"
+            >
+              Total Profit:</label
+            >
+            <input
+              type="text"
+              class="modal__container__element__form__group__input"
+            />
+          </div>
+          <button class="modal__container__element__form__group__btn">
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</ng-container>
