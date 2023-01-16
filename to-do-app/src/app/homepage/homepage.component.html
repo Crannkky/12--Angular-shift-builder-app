@@ -13,7 +13,7 @@
       <th class="shifts__table__row__head">Total Profit</th>
       <th class="shifts__table__row__head"></th>
     </tr>
-    <tr class="shifts__table__row" *ngFor="let item of shifts">
+    <tr class="shifts__table__row" *ngFor="let item of shifts; let i = index">
       <td class="shifts__table__row__data">{{ item.date }}</td>
       <td class="shifts__table__row__data">{{ item.startTime }}</td>
       <td class="shifts__table__row__data">{{ item.endTime }}</td>
@@ -26,11 +26,11 @@
         {{ item.totalHours * item.hourlyWage }} $
       </td>
       <td class="shifts__table__row__data">
-        <button class="shifts__table__row__data__btn" (click)="open()">
+        <button class="shifts__table__row__data__btn" (click)="open(i)">
           Edit
         </button>
       </td>
     </tr>
   </table>
-  <app-edit-modal [expectedProp]="{ shifts: shifts }"></app-edit-modal>
+  <app-edit-modal [expectedProp]="shifts[selectedIndex]"></app-edit-modal>
 </div>

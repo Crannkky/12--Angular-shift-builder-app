@@ -3,11 +3,7 @@
     <div (click)="$event.stopPropagation()" class="modal__container">
       <button class="close" type="button" (click)="close()">X</button>
       <div class="modal__container__element">
-        <form
-          class="modal__container__element__form"
-          *ngFor="let item of expectedProp.shifts"
-          [formGroup]="form"
-        >
+        <form class="modal__container__element__form" [formGroup]="form">
           <div class="modal__container__element__form__group">
             <label
               for="date"
@@ -17,7 +13,6 @@
             <input
               type="date"
               class="modal__container__element__form__group__input"
-              [value]="item.date"
               formControlName="date"
             />
           </div>
@@ -30,7 +25,6 @@
             <input
               type="time"
               class="modal__container__element__form__group__input"
-              [value]="item.startTime"
               formControlName="startTime"
             />
           </div>
@@ -44,7 +38,6 @@
               type="time"
               class="modal__container__element__form__group__input"
               formControlName="endTime"
-              [value]="item.endTime"
             />
           </div>
           <div class="modal__container__element__form__group">
@@ -57,7 +50,6 @@
               type="number"
               class="modal__container__element__form__group__input"
               formControlName="totalHours"
-              [value]="item.totalHours"
             />
           </div>
           <div class="modal__container__element__form__group">
@@ -70,7 +62,6 @@
               type="number"
               class="modal__container__element__form__group__input"
               formControlName="hourlyWage"
-              [value]="item.hourlyWage"
             />
           </div>
           <div class="modal__container__element__form__group">
@@ -83,7 +74,6 @@
               type="number"
               class="modal__container__element__form__group__select"
               formControlName="workPlace"
-              [value]="item.workPlace"
             >
               <option value="The Office">The Office</option>
               <option value="The Warehouse">The Warehouse</option>
@@ -101,7 +91,6 @@
               type="text"
               class="modal__container__element__form__group__input"
               formControlName="shiftName"
-              [value]="item.shiftName"
             />
           </div>
           <div class="modal__container__element__form__group">
@@ -115,7 +104,6 @@
               type="text"
               class="modal__container__element__form__group__input"
               formControlName="comments"
-              [value]="item.comments"
             />
           </div>
           <div class="modal__container__element__form__group">
@@ -128,7 +116,6 @@
             <input
               type="text"
               class="modal__container__element__form__group__input"
-              [value]="item.hourlyWage * item.totalHours"
             />
           </div>
           <button class="modal__container__element__form__group__btn">
