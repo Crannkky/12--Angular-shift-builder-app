@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { EditModalService } from '../shared/edit-modal.service';
 
 @Component({
   selector: 'app-homepage',
@@ -10,7 +11,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class HomepageComponent implements OnInit {
   shifts;
 
-  constructor(db: AngularFirestore) {
+  constructor(
+    db: AngularFirestore,
+    private editModalService: EditModalService
+  ) {
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
     db.collection('shifts', (ref) =>
       ref.where('createdBy', '==', loggedUser.email)
@@ -25,6 +29,11 @@ export class HomepageComponent implements OnInit {
           console.log(loggedUser);
         }
       });
+  }
+
+  open() {
+    console.log('Modal opened!');
+    this.editModalService.open();
   }
 
   ngOnInit(): void {}

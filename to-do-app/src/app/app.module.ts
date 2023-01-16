@@ -20,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddShiftComponent } from './add-shift/add-shift.component';
+import { EditModalComponent } from './edit-modal/edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AddShiftComponent } from './add-shift/add-shift.component';
     HomepageComponent,
     NavbarComponent,
     AddShiftComponent,
+    EditModalComponent,
   ],
   imports: [
     BrowserModule,

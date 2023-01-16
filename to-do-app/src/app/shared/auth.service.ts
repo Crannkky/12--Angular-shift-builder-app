@@ -9,6 +9,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { uuidv4 } from '@firebase/util';
 
 @Injectable({
   providedIn: 'root',
@@ -179,6 +180,7 @@ export class AuthService {
 
   addShift(shift: Shift, creator: string) {
     this.firestoreCollectionShifts.add({
+      id: uuidv4(),
       date: shift.date,
       startTime: shift.startTime,
       endTime: shift.endTime,
