@@ -10,6 +10,7 @@ import {
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { uuidv4 } from '@firebase/util';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,8 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    private datepipe: DatePipe
   ) {
     this.firestoreCollection = firestore.collection('users');
     this.firestoreCollectionAuth = firestore.collection('usersAuth');
@@ -179,12 +181,24 @@ export class AuthService {
   }
 
   addShift(shift: Shift, creator: string) {
+    console.log('Start Date', shift.startDate);
+    console.log('End Date', shift.endDate);
+    const startDate = this.datepipe.transform(
+      shift.startDate,
+      'yyy-MM-ddTHH:mm'
+    );
+    const startMili = Date.parse(startDate);
+    const endDate = this.datepipe.transform(shift.endDate, 'yyy-MM-ddTHH:mm');
+    const endMili = Date.parse(endDate);
+    const totalHours = ((endMili - startMili) / (1000 * 60 * 60)).toFixed(1);
+
     this.firestoreCollectionShifts.add({
       id: uuidv4(),
-      date: shift.date,
+      startDate: shift.startDate,
+      endDate: shift.endDate,
       startTime: shift.startTime,
       endTime: shift.endTime,
-      totalHours: shift.totalHours,
+      totalHours: totalHours,
       hourlyWage: shift.hourlyWage,
       workPlace: shift.workPlace,
       shiftName: shift.shiftName,

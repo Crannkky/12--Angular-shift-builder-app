@@ -20,6 +20,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddShiftComponent } from './add-shift/add-shift.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
     AngularFireDatabaseModule,
     FontAwesomeModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,6 @@
 export interface Shift {
-  date: string;
+  startDate: Date;
+  endDate: Date;
   startTime: string;
   endTime: string;
   totalHours: number;

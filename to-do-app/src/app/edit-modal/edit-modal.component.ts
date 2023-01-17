@@ -7,6 +7,7 @@ import { EditModalService } from '../shared/edit-modal.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Shift } from '../shared/shift.interface';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-modal',
@@ -21,7 +22,8 @@ export class EditModalComponent implements OnInit, OnChanges {
   constructor(
     private editModalService: EditModalService,
     private db: AngularFirestore,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public datepipe: DatePipe
   ) {}
 
   //Date.parse('2023-03-12 12:30') (/1000 *60 *60)
@@ -31,7 +33,8 @@ export class EditModalComponent implements OnInit, OnChanges {
     this.display$ = this.editModalService.watch();
 
     this.form = this.formBuilder.group({
-      date: [''],
+      startDate: [''],
+      endDate: [''],
       startTime: [''],
       endTime: [''],
       totalHours: [''],
@@ -49,5 +52,11 @@ export class EditModalComponent implements OnInit, OnChanges {
 
   close() {
     this.editModalService.close();
+    //   const startDate = this.datepipe.transform(
+    //     this.expectedProp.startDate,
+    //     'yyyy-MM-dd'
+    //   );
+    //   const startMili = Date.parse(startDate);
+    //   console.log(startMili);
   }
 }

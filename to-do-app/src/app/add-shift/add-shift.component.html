@@ -18,38 +18,24 @@
         >
         <input
           class="add-shift__container__element__form__group__input"
-          type="date"
-          name="date"
-          formControlName="date"
-          #date
+          type="datetime-local"
+          name="startDate"
+          formControlName="startDate"
+          #startDate
         />
       </div>
       <div class="add-shift__container__element__form__group">
         <label
           class="add-shift__container__element__form__group__label"
-          for="startTime"
-          >Shift start hour:</label
+          for="date"
+          >Shift end date:</label
         >
         <input
           class="add-shift__container__element__form__group__input"
-          type="time"
-          name="startTime"
-          formControlName="startTime"
-          #startTime
-        />
-      </div>
-      <div class="add-shift__container__element__form__group">
-        <label
-          class="add-shift__container__element__form__group__label"
-          for="endTime"
-          >Shift end hour:</label
-        >
-        <input
-          class="add-shift__container__element__form__group__input"
-          type="time"
-          name="endTime"
-          formControlName="endTime"
-          #endtime
+          type="datetime-local"
+          name="endDate"
+          formControlName="endDate"
+          #endDate
         />
       </div>
       <div class="add-shift__container__element__form__group">

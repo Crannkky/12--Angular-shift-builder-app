@@ -3,6 +3,7 @@
   <table class="shifts__table">
     <tr class="shifts__table__row">
       <th class="shifts__table__row__head">Shift start date</th>
+      <th class="shifts__table__row__head">Shift end date</th>
       <th class="shifts__table__row__head">Shift start hour</th>
       <th class="shifts__table__row__head">Shift end hour</th>
       <th class="shifts__table__row__head">Total Hours</th>
@@ -14,7 +15,8 @@
       <th class="shifts__table__row__head"></th>
     </tr>
     <tr class="shifts__table__row" *ngFor="let item of shifts; let i = index">
-      <td class="shifts__table__row__data">{{ item.date }}</td>
+      <td class="shifts__table__row__data">{{ item.startDate }}</td>
+      <td class="shifts__table__row__data">{{ item.endDate }}</td>
       <td class="shifts__table__row__data">{{ item.startTime }}</td>
       <td class="shifts__table__row__data">{{ item.endTime }}</td>
       <td class="shifts__table__row__data">{{ item.totalHours }}</td>

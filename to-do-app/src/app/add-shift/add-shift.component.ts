@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -8,6 +8,7 @@ import {
 import { uuidv4 } from '@firebase/util';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-shift',
@@ -20,17 +21,18 @@ export class AddShiftComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    public datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
     this.form = this.formBuilder.group({
       id: [uuidv4()],
-      date: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
-      totalHours: ['', Validators.required],
       hourlyWage: ['', Validators.required],
       workPlace: ['', Validators.required],
       shiftName: ['', Validators.required],
@@ -44,6 +46,6 @@ export class AddShiftComponent implements OnInit {
     this.authService.addShift(form.value, loggedUser.email);
     alert('Shift added successfully!');
     console.log(this.form.value);
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
   }
 }
