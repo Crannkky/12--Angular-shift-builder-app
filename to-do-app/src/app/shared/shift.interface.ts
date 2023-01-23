@@ -1,6 +1,7 @@
 export interface Shift {
   startDate: Date;
   endDate: Date;
+  id: string;
   startTime: string;
   endTime: string;
   totalHours: number;
@@ -8,4 +9,5 @@ export interface Shift {
   workPlace: string;
   shiftName: string;
   comments: string;
+  totalProfit: number;
 }

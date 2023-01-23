@@ -180,31 +180,30 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  addShift(shift: Shift, creator: string) {
-    console.log('Start Date', shift.startDate);
-    console.log('End Date', shift.endDate);
-    const startDate = this.datepipe.transform(
-      shift.startDate,
-      'yyy-MM-ddTHH:mm'
-    );
-    const startMili = Date.parse(startDate);
-    const endDate = this.datepipe.transform(shift.endDate, 'yyy-MM-ddTHH:mm');
-    const endMili = Date.parse(endDate);
-    const totalHours = ((endMili - startMili) / (1000 * 60 * 60)).toFixed(1);
+  // addShift(shift: Shift, creator: string) {
+  //   console.log('Start Date', shift.startDate);
+  //   console.log('End Date', shift.endDate);
+  //   const startDate = this.datepipe.transform(
+  //     shift.startDate,
+  //     'yyy-MM-ddTHH:mm'
+  //   );
+  //   const startMili = Date.parse(startDate);
+  //   const endDate = this.datepipe.transform(shift.endDate, 'yyy-MM-ddTHH:mm');
+  //   const endMili = Date.parse(endDate);
+  //   const totalHours = ((endMili - startMili) / (1000 * 60 * 60)).toFixed(1);
 
-    this.firestoreCollectionShifts.add({
-      id: uuidv4(),
-      startDate: shift.startDate,
-      endDate: shift.endDate,
-      startTime: shift.startTime,
-      endTime: shift.endTime,
-      totalHours: totalHours,
-      hourlyWage: shift.hourlyWage,
-      workPlace: shift.workPlace,
-      shiftName: shift.shiftName,
-      comments: shift.comments,
-      createdBy: creator,
-    });
-  }
+  //   this.firestoreCollectionShifts.add({
+  //     id: uuidv4(),
+  //     startDate: shift.startDate,
+  //     endDate: shift.endDate,
+  //     totalHours: totalHours,
+  //     hourlyWage: shift.hourlyWage,
+  //     workPlace: shift.workPlace,
+  //     shiftName: shift.shiftName,
+  //     comments: shift.comments,
+  //     createdBy: creator,
+  //     totalProfit: Math.round(Number(totalHours) * shift.hourlyWage).toFixed(2),
+  //   });
+  // }
 }
 ///////////////

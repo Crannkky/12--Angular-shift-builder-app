@@ -11,7 +11,7 @@
               >Start Date:</label
             >
             <input
-              type="date"
+              type="datetime-local"
               class="modal__container__element__form__group__input"
               formControlName="startDate"
             />
@@ -23,33 +23,9 @@
               >End Date:</label
             >
             <input
-              type="date"
+              type="datetime-local"
               class="modal__container__element__form__group__input"
               formControlName="endDate"
-            />
-          </div>
-          <div class="modal__container__element__form__group">
-            <label
-              for="startTime"
-              class="modal__container__element__form__group__label"
-              >Start Time:</label
-            >
-            <input
-              type="time"
-              class="modal__container__element__form__group__input"
-              formControlName="startTime"
-            />
-          </div>
-          <div class="modal__container__element__form__group">
-            <label
-              for="endTime"
-              class="modal__container__element__form__group__label"
-              >End Time:</label
-            >
-            <input
-              type="time"
-              class="modal__container__element__form__group__input"
-              formControlName="endTime"
             />
           </div>
           <div class="modal__container__element__form__group">
@@ -126,11 +102,14 @@
               Total Profit:</label
             >
             <input
-              type="text"
+              type="number"
               class="modal__container__element__form__group__input"
             />
           </div>
-          <button class="modal__container__element__form__group__btn">
+          <button
+            class="modal__container__element__form__group__btn"
+            (click)="updateShift()"
+          >
             Update
           </button>
         </form>

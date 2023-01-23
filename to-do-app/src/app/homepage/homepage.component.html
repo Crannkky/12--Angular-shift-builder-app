@@ -1,11 +1,10 @@
 <app-navbar></app-navbar>
 <div class="container">
+  <app-next-shift [expectedProp]="shifts"></app-next-shift>
   <table class="shifts__table">
     <tr class="shifts__table__row">
       <th class="shifts__table__row__head">Shift start date</th>
       <th class="shifts__table__row__head">Shift end date</th>
-      <th class="shifts__table__row__head">Shift start hour</th>
-      <th class="shifts__table__row__head">Shift end hour</th>
       <th class="shifts__table__row__head">Total Hours</th>
       <th class="shifts__table__row__head">Hourly Wage</th>
       <th class="shifts__table__row__head">Shift Location</th>
@@ -17,8 +16,6 @@
     <tr class="shifts__table__row" *ngFor="let item of shifts; let i = index">
       <td class="shifts__table__row__data">{{ item.startDate }}</td>
       <td class="shifts__table__row__data">{{ item.endDate }}</td>
-      <td class="shifts__table__row__data">{{ item.startTime }}</td>
-      <td class="shifts__table__row__data">{{ item.endTime }}</td>
       <td class="shifts__table__row__data">{{ item.totalHours }}</td>
       <td class="shifts__table__row__data">{{ item.hourlyWage }} $</td>
       <td class="shifts__table__row__data">{{ item.workPlace }}</td>
@@ -30,6 +27,13 @@
       <td class="shifts__table__row__data">
         <button class="shifts__table__row__data__btn" (click)="open(i)">
           Edit
+        </button>
+        <button
+          class="shifts__table__row__data__btn"
+          (click)="deleteDocument(item.id)"
+          style="background-color: red; border: 1px solid red; margin-top: 10px"
+        >
+          Delete
         </button>
       </td>
     </tr>

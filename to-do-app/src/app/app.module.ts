@@ -21,6 +21,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddShiftComponent } from './add-shift/add-shift.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { DatePipe } from '@angular/common';
+import { NextShiftComponent } from './next-shift/next-shift.component';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { DatePipe } from '@angular/common';
     NavbarComponent,
     AddShiftComponent,
     EditModalComponent,
+    NextShiftComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { DatePipe } from '@angular/common';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     FontAwesomeModule,
+    NotifierModule,
   ],
   providers: [AuthService, DatePipe],
   bootstrap: [AppComponent],

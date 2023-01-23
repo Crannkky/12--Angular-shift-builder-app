@@ -9,6 +9,7 @@ import { uuidv4 } from '@firebase/util';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { DatePipe } from '@angular/common';
+import { ShiftsService } from '../shared/shifts.service';
 
 @Component({
   selector: 'app-add-shift',
@@ -20,7 +21,7 @@ export class AddShiftComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public authService: AuthService,
+    public shiftsService: ShiftsService,
     public router: Router,
     public datepipe: DatePipe
   ) {}
@@ -43,9 +44,9 @@ export class AddShiftComponent implements OnInit {
 
   addShift(form: any) {
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
-    this.authService.addShift(form.value, loggedUser.email);
+    this.shiftsService.addShift(form.value, loggedUser.email);
     alert('Shift added successfully!');
     console.log(this.form.value);
-    // this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 }

@@ -1,0 +1,20 @@
+<div class="time__container">
+  <div class="time__container__group">
+    <p class="time__container__group__text">Previous shift was:</p>
+    <p class="time__container__group__time">
+      {{ previousShift | date : "medium" }}
+    </p>
+  </div>
+  <div class="time__container__group">
+    <p class="time__container__group__text">Current date is:</p>
+    <p class="time__container__group__time">
+      {{ currentDate | date : "medium" }}
+    </p>
+  </div>
+  <div class="time__container__group">
+    <p class="time__container__group__text">Next shift is:</p>
+    <p class="time__container__group__time">
+      {{ nextShift | date : "medium" }}
+    </p>
+  </div>
+</div>

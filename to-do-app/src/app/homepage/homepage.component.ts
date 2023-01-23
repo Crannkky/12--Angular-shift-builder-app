@@ -12,9 +12,10 @@ import { Shift } from '../shared/shift.interface';
 export class HomepageComponent implements OnInit {
   shifts: Array<Shift>;
   selectedIndex;
+  roundedProfit: number;
 
   constructor(
-    db: AngularFirestore,
+    private db: AngularFirestore,
     private editModalService: EditModalService
   ) {
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
@@ -31,6 +32,19 @@ export class HomepageComponent implements OnInit {
           console.log(loggedUser);
         }
       });
+  }
+
+  deleteDocument(formId: string) {
+    this.db
+      .collection('shifts', (ref) => ref.where('id', '==', formId))
+      .get()
+      .subscribe((snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log('Delete', doc.data());
+          doc.ref.delete();
+        });
+      });
+    alert('Shift was deleted!');
   }
 
   open(i) {
