@@ -1,0 +1,29 @@
+@import "../../styles.scss";
+
+.shifts__table {
+  width: 60%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: $background-gray;
+  padding: 20px;
+  border: 2px solid $primary-green;
+  border-radius: 15px;
+  box-shadow: 4px 4px;
+
+  &__title {
+    color: $primary-green;
+    font-size: 17px;
+  }
+
+  &__row {
+    &__data {
+      border: 1px solid black;
+      padding: 20px;
+      color: black;
+    }
+  }
+}

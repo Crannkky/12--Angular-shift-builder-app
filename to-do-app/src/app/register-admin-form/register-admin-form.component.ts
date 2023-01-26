@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { uuidv4 } from '@firebase/util';
-import { AuthService } from '../shared/auth.admin.service';
+import { AuthAdminService } from '../shared/auth.admin.service';
 
 @Component({
   selector: 'app-register-admin-form',
@@ -10,45 +15,45 @@ import { AuthService } from '../shared/auth.admin.service';
   styleUrls: ['./register-admin-form.component.scss'],
 })
 export class RegisterAdminFormComponent implements OnInit {
-  admin: any = {
-    first_name: '',
-    last_name: '',
-    email_address: '',
+  form: FormGroup;
+
+  admin = {
+    id: uuidv4(),
+    email: '',
+    firstName: '',
+    lastName: '',
+    age: '',
     password: '',
-    admin_token: '',
+    adminToken: '',
+    isAdmin: true,
   };
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    public authAdminService: AuthAdminService
   ) {}
-
-  form: FormGroup;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       id: uuidv4(),
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email_address: ['', Validators.required],
+      email: ['', [Validators.required]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      age: ['', Validators.required],
       password: ['', Validators.required],
-      admin_token: ['', Validators.required],
-      is_admin: 'true',
+      adminToken: ['', Validators.required],
+      isAdmin: [true],
     });
   }
 
-  registerAdmin(form: any) {
-    this.authService.registerAdmin(form.value);
+  registerUserDb(form: any) {
+    this.authAdminService.registerAdmin(form.value);
     console.log(this.form.value);
-    console.log('Admin account created!');
-  }
-
-  onSubmit() {
-    console.log(this.form), console.log(this.form.value.email_address);
+    console.log('Data registration successful');
   }
 
   redirectAdmin() {
-    this.router.navigate(['/admin.login']);
+    this.router.navigate(['/admin/login']);
   }
 }

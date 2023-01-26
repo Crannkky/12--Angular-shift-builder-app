@@ -42,8 +42,8 @@ export class ShiftsService {
 
     this.firestoreCollectionShifts.add({
       id: uuidv4(),
-      startDate: shift.startDate,
-      endDate: shift.endDate,
+      startDate: new Date(shift.startDate),
+      endDate: new Date(shift.endDate),
       totalHours: totalHours,
       hourlyWage: shift.hourlyWage,
       workPlace: shift.workPlace,

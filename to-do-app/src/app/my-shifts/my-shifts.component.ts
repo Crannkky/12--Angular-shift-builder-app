@@ -4,12 +4,11 @@ import { EditModalService } from '../shared/edit-modal.service';
 import { Shift } from '../shared/shift.interface';
 
 @Component({
-  selector: 'app-homepage',
-
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss'],
+  selector: 'app-my-shifts',
+  templateUrl: './my-shifts.component.html',
+  styleUrls: ['./my-shifts.component.scss'],
 })
-export class HomepageComponent implements OnInit {
+export class MyShiftsComponent implements OnInit {
   shifts: Array<Shift>;
   selectedIndex;
   roundedProfit: number;

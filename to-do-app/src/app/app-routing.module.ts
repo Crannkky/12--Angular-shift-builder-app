@@ -7,18 +7,31 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AddShiftComponent } from './add-shift/add-shift.component';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { MyShiftsComponent } from './my-shifts/my-shifts.component';
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    component: HomepageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
-  { path: 'admin/register', component: RegisterAdminFormComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
   { path: 'add-shift', component: AddShiftComponent, canActivate: [AuthGuard] },
+  {
+    path: 'admin/register',
+    component: RegisterAdminFormComponent,
+  },
+  {
+    path: 'my-shifts',
+    component: MyShiftsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

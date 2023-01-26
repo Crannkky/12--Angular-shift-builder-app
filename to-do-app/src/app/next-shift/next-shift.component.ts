@@ -29,34 +29,50 @@ export class NextShiftComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(private datePipe: DatePipe, db: AngularFirestore) {}
 
+  parseDate(date) {
+    if (typeof date === 'string') {
+      return new Date(date);
+    }
+    return date.toDate();
+  }
+
   ngOnInit() {
     this.intervalId = setInterval(() => {
       this.currentDate = new Date();
     }, 1000);
     console.log(this.expectedProp);
+    this.setShiftsTimeline();
   }
 
   ngOnChanges() {
-    const shifts = this.expectedProp;
-    console.log('Shifts', shifts);
-    shifts.forEach((shift) => {
-      this.startDates.push(Date.parse(shift.startDate));
-      console.log(this.startDates);
-    });
-    const currentTimestamp = Date.parse(this.currentDate.toString());
-    const previousStartDate = this.startDates.find(
-      (date) => date < currentTimestamp
-    );
-    const nextStartDate = this.startDates
-      .filter((date) => date > currentTimestamp)
-      .sort((a, b) => a - b)
-      .slice(1, 2)
-      .pop();
-    this.previousShift = previousStartDate;
-    this.nextShift = nextStartDate;
+    this.setShiftsTimeline();
   }
 
   ngOnDestroy() {
     clearInterval(this.intervalId);
+  }
+
+  setShiftsTimeline() {
+    const shifts = this.expectedProp;
+    console.log('Shifts:', shifts);
+
+    this.startDates = shifts.map((shift) => shift.startDate).sort();
+    console.log('Start Dates:', this.startDates);
+
+    const previousStartDate = this.startDates.find(
+      (date) => this.parseDate(date) < this.currentDate
+    );
+    console.log('Previous start date:', previousStartDate);
+
+    const nextStartDate = this.startDates.find(
+      (date) => this.parseDate(date) > this.currentDate
+    );
+    console.log('Next start date:', nextStartDate);
+    console.log('Current date:', this.currentDate);
+
+    this.previousShift = previousStartDate;
+    console.log('Previous shift:', this.previousShift);
+    this.nextShift = nextStartDate;
+    console.log('Next Shift:', this.nextShift);
   }
 }

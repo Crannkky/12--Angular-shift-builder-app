@@ -1,67 +1,104 @@
-<div class="form-container">
-  <form action="submit" [formGroup]="form" (ngSubmit)="registerAdmin(form)">
-    <label for="first_name">First Name:</label>
-    <input type="text" name="first_name" formControlName="first_name" />
+<div class="register__container">
+  <img
+    class="register__container__logo"
+    src="../../assets/logo.png"
+    alt="logo"
+  />
+  <div class="register__container__group">
+    <h3 class="register__container__title">Register</h3>
+  </div>
 
-    <div
-      *ngIf="
-        form.controls['first_name'].invalid &&
-        form.controls['first_name'].touched
-      "
-      class="error"
-    >
-      First Name is required
+  <h3 class="register__container__sub__title">- admin -</h3>
+
+  <form
+    [formGroup]="form"
+    class="register__container__form"
+    action="submit"
+    (ngSubmit)="registerUserDb(form)"
+  >
+    <div class="register__container__form__group">
+      <input
+        type="email"
+        class="register__container__form__group__input"
+        placeholder="Email Address..."
+        #email
+        formControlName="email"
+        name="email"
+        id="email"
+        required
+      />
     </div>
-
-    <label for="last_name">Last Name:</label>
-    <input type="text" name="last_name" formControlName="last_name" />
-
-    <div
-      *ngIf="
-        form.controls['last_name'].invalid && form.controls['last_name'].touched
-      "
-      class="error"
-    >
-      Last Name is required
+    <div class="register__container__form__group">
+      <input
+        type="text"
+        class="register__container__form__group__input"
+        placeholder="First Name..."
+        #firstName
+        required
+        formControlName="firstName"
+      />
     </div>
-
-    <label for="email_address">Email Address:</label>
-    <input type="email" name="email_address" formControlName="email_address" />
-
-    <div
-      *ngIf="
-        form.controls['email_address'].invalid &&
-        form.controls['email_address'].touched
-      "
-      class="error"
-    >
-      Email Address is required
+    <div class="register__container__form__group">
+      <input
+        type="text"
+        class="register__container__form__group__input"
+        placeholder="Last Name..."
+        #lastName
+        required
+        formControlName="lastName"
+      />
     </div>
-
-    <label for="password">Password:</label>
-    <input type="password" name="password" formControlName="password" />
-
-    <div
-      *ngIf="
-        form.controls['password'].invalid && form.controls['password'].touched
-      "
-      class="error"
-    >
-      Password is required
+    <div class="register__container__form__group">
+      <input
+        type="number"
+        class="register__container__form__group__input"
+        placeholder="Age.."
+        #age
+        required
+        formControlName="age"
+      />
     </div>
-    <label for="admin_token">Admin token:</label>
-    <input type="text" name="admin_token" formControlName="admin_token" />
-    <div
-      *ngIf="
-        form.controls['admin_token'].invalid &&
-        form.controls['admin_token'].touched
-      "
-      class="error"
-    >
-      Admin token is required
+    <div class="register__container__form__group">
+      <input
+        type="password"
+        class="register__container__form__group__input"
+        placeholder="Password..."
+        #password
+        required
+        formControlName="password"
+      />
     </div>
-
-    <button type="submit">Submit</button>
+    <div class="register__container__form__group">
+      <input
+        type="submit"
+        class="register__container__form__group__btn"
+        value="Register"
+        (click)="authAdminService.RegisterAdmin(email.value, password.value)"
+      />
+    </div>
+    <div class="register__container__form__group">
+      <span class="register__container__form__group__or">OR</span>
+    </div>
+    <div class="register__container__form__group">
+      <button
+        type="button"
+        class="register__container__form__group__google"
+        (click)="authAdminService.GoogleAuth()"
+      >
+        Register with Google
+        <img
+          class="google-icon"
+          src="../../assets/google_icon.png"
+          alt="google_icon"
+        />
+      </button>
+    </div>
   </form>
-  <button type="button">Already have an account! Proceed to Login page.</button>
+  <button
+    type="button"
+    class="register__container__redirect"
+    (click)="authAdminService.redirectAdminLogin()"
+  >
+    Already have an account? Login here!
+  </button>
 </div>

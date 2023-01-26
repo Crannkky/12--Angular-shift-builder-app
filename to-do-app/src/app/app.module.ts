@@ -23,6 +23,8 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { DatePipe } from '@angular/common';
 import { NextShiftComponent } from './next-shift/next-shift.component';
 import { NotifierModule } from 'angular-notifier';
+import { ProfitShiftComponent } from './profit-shift/profit-shift.component';
+import { MyShiftsComponent } from './my-shifts/my-shifts.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { NotifierModule } from 'angular-notifier';
     AddShiftComponent,
     EditModalComponent,
     NextShiftComponent,
+    ProfitShiftComponent,
+    MyShiftsComponent,
   ],
   imports: [
     BrowserModule,

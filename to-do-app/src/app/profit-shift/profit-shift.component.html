@@ -1,0 +1,18 @@
+<div class="shifts__table">
+  <h3 class="shifts__table__title">The most profitable shift:</h3>
+  <tr class="shifts__table__row">
+    <td class="shifts__table__row__data">
+      {{ parseDate(this.theShift.startDate) }}
+    </td>
+    <td class="shifts__table__row__data">
+      {{ parseDate(this.theShift.endDate) }}
+    </td>
+    <td class="shifts__table__row__data">{{ this.theShift.totalHours }}</td>
+    <td class="shifts__table__row__data">{{ this.theShift.hourlyWage }} $</td>
+    <td class="shifts__table__row__data">{{ this.theShift.workPlace }}</td>
+    <td class="shifts__table__row__data">{{ this.theShift.shiftName }}</td>
+    <td class="shifts__table__row__data" style="color: #7d9d9c">
+      {{ this.theShift.totalProfit }} $
+    </td>
+  </tr>
+</div>

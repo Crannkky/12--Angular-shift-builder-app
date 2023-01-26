@@ -30,8 +30,8 @@ export class AddShiftComponent implements OnInit {
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
     this.form = this.formBuilder.group({
       id: [uuidv4()],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startDate: [Date, Validators.required],
+      endDate: [Date, Validators.required],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
       hourlyWage: ['', Validators.required],
