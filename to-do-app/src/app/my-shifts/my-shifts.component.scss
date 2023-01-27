@@ -28,12 +28,14 @@
         border: 2px solid black;
         padding: 10px;
         background-color: $primary-beige;
+        color: $primary-green;
       }
 
       &__data {
         border: 2px solid black;
         padding: 10px;
-        color: $primary-green;
+        font-size: 13px;
+        font-weight: 200;
 
         &__btn {
           cursor: pointer;

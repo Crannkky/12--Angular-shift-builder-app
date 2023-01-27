@@ -25,6 +25,7 @@ import { NextShiftComponent } from './next-shift/next-shift.component';
 import { NotifierModule } from 'angular-notifier';
 import { ProfitShiftComponent } from './profit-shift/profit-shift.component';
 import { MyShiftsComponent } from './my-shifts/my-shifts.component';
+import { PastWeekShiftsComponent } from './past-week-shifts/past-week-shifts.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MyShiftsComponent } from './my-shifts/my-shifts.component';
     NextShiftComponent,
     ProfitShiftComponent,
     MyShiftsComponent,
+    PastWeekShiftsComponent,
   ],
   imports: [
     BrowserModule,

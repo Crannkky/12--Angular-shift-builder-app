@@ -23,11 +23,8 @@ export class NavbarComponent implements OnInit {
       .subscribe((data) => {
         if (data.length > 0) {
           this.item = data[0];
-          console.log(data);
-          console.log(loggedUser);
         } else {
           console.log('No data found');
-          console.log(loggedUser);
         }
       });
   }

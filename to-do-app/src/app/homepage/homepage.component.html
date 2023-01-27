@@ -1,10 +1,13 @@
 <app-navbar></app-navbar>
 <div class="container">
   <div class="container__element">
+    <app-past-week-shifts [expectedProp]="shifts"></app-past-week-shifts>
+    <app-edit-modal [expectedProp]="shifts[selectedIndex]"></app-edit-modal>
+  </div>
+  <div class="container__element">
     <app-next-shift [expectedProp]="shifts"></app-next-shift>
     <app-edit-modal [expectedProp]="shifts[selectedIndex]"></app-edit-modal>
   </div>
-
   <div class="container__element">
     <app-profit-shift [expectedProp]="shifts"></app-profit-shift>
     <app-edit-modal [expectedProp]="shifts[selectedIndex]"></app-edit-modal>

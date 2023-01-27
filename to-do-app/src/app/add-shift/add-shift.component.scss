@@ -13,7 +13,8 @@
 
     &__title {
       color: $primary-green;
-      font-size: 20px;
+      font-size: 25px;
+      text-transform: uppercase;
     }
 
     &__form {
@@ -24,6 +25,7 @@
       border: 0.5px solid $primary-green;
       border-radius: 15px;
       background-color: $background-gray;
+      box-shadow: 5px 5px;
 
       &__group {
         display: flex;
@@ -42,6 +44,8 @@
           border-radius: 5px;
           border: 1px solid $primary-green;
           transition: all 0.5s;
+          font-size: 12px;
+          font-weight: 200;
           &:focus {
             scale: 1.2;
             transition: all 0.5s ease-in-out;

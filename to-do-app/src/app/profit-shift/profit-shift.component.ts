@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Shift } from '../shared/shift.interface';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profit-shift',
@@ -10,15 +11,22 @@ export class ProfitShiftComponent implements OnInit, OnChanges {
   @Input() expectedProp;
   profitShift: number;
   theShift: Shift;
+  bestMonth: {
+    month: number;
+    monthName?: string;
+    totalProfit: number;
+  };
 
-  constructor() {}
+  constructor(private datePipe: DatePipe) {}
 
   ngOnInit(): void {
-    this.mostProfitableShift();
+    this.mostProfitableMonth;
+    this.monthName();
   }
 
   ngOnChanges(): void {
-    this.mostProfitableShift();
+    this.mostProfitableMonth();
+    this.monthName();
     console.log(this.theShift);
   }
 
@@ -29,14 +37,28 @@ export class ProfitShiftComponent implements OnInit, OnChanges {
     return date.toDate();
   }
 
-  mostProfitableShift() {
+  mostProfitableMonth() {
     const shifts = this.expectedProp;
     console.log('Shifts: ', shifts);
-    this.profitShift = Math.max(...shifts.map((shift) => shift.totalProfit));
-    console.log(this.profitShift);
-    this.theShift = shifts.find((shift) => {
-      return shift.totalProfit == this.profitShift;
+    const monthProfit: {
+      [month: number]: { month: number; totalProfit: number };
+    } = shifts.reduce((acc: Shift, shift: Shift) => {
+      let startDate = new Date(shift.startDate.seconds * 1000);
+      const month = startDate.getUTCMonth();
+      if (!acc[month]) {
+        acc[month] = { month, totalProfit: 0 };
+      }
+      acc[month].totalProfit += parseInt(shift.totalProfit);
+      return acc;
+    }, {});
+    this.bestMonth = Object.values(monthProfit).reduce((a, b) => {
+      return a.totalProfit > b.totalProfit ? a : b;
     });
-    console.log(this.theShift);
+  }
+
+  monthName() {
+    const date = new Date();
+    date.setMonth(this.bestMonth.month);
+    this.bestMonth.monthName = this.datePipe.transform(date, 'MMM');
   }
 }

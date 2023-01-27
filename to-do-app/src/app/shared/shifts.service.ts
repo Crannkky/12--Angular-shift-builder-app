@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Shift } from './shift.interface';
+import { Shift, ShiftDate } from './shift.interface';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -28,15 +28,17 @@ export class ShiftsService {
     this.firestoreCollectionShifts = firestore.collection('shifts');
   }
 
-  addShift(shift: Shift, creator: string) {
+  addShift(shift: ShiftDate, creator: string) {
     console.log('Start Date', shift.startDate);
     console.log('End Date', shift.endDate);
     const startDate = this.datepipe.transform(
       shift.startDate,
       'yyy-MM-ddTHH:mm'
     );
+    console.log(startDate);
     const startMili = Date.parse(startDate);
     const endDate = this.datepipe.transform(shift.endDate, 'yyy-MM-ddTHH:mm');
+    console.log(endDate);
     const endMili = Date.parse(endDate);
     const totalHours = ((endMili - startMili) / (1000 * 60 * 60)).toFixed(1);
 

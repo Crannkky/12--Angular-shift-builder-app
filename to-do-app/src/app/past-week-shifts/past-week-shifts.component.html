@@ -1,0 +1,24 @@
+<div class="container">
+  <table class="shifts__table">
+    <h3 class="shifts__table__title">Past week's shifts:</h3>
+    <tr class="shifts__table__row">
+      <th class="shifts__table__row__head">Shift Date</th>
+      <th class="shifts__table__row__head">Shift Location:</th>
+      <th class="shifts__table__row__head">Shift Duration</th>
+      <th class="shifts__table__row__head">Shift Profit</th>
+    </tr>
+    <tr
+      class="shifts__table__row"
+      *ngFor="let item of filteredShift; let i = index"
+    >
+      <td class="shifts__table__row__data">
+        {{ parseDate(item.startDate) }}
+      </td>
+      <td class="shifts__table__row__data">
+        {{ item.workPlace }}
+      </td>
+      <td class="shifts__table__row__data">{{ item.totalHours }} hours</td>
+      <td class="shifts__table__row__data">{{ item.totalProfit }} $</td>
+    </tr>
+  </table>
+</div>

@@ -1,13 +1,26 @@
 export interface Shift {
-  startDate: Date;
+  startDate: {
+    seconds: number;
+    nanoseconds: number;
+  };
   endDate: Date;
   id: string;
-  startTime: string;
-  endTime: string;
   totalHours: number;
   hourlyWage: number;
   workPlace: string;
   shiftName: string;
   comments: string;
-  totalProfit: number;
+  totalProfit: string;
+}
+
+export interface ShiftDate {
+  startDate: Date;
+  endDate: Date;
+  id: string;
+  totalHours: number;
+  hourlyWage: number;
+  workPlace: string;
+  shiftName: string;
+  comments: string;
+  totalProfit: string;
 }
