@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { uuidv4 } from '@firebase/util';
-import { AuthAdminService } from '../shared/auth.admin.service';
+import { AuthAdminService } from '../../shared/auth.admin.service';
 
 @Component({
   selector: 'app-register-admin-form',
@@ -24,7 +24,7 @@ export class RegisterAdminFormComponent implements OnInit {
     lastName: '',
     age: '',
     password: '',
-    adminToken: '',
+    adminToken: uuidv4(),
     isAdmin: true,
   };
 
@@ -42,7 +42,7 @@ export class RegisterAdminFormComponent implements OnInit {
       lastName: ['', Validators.required],
       age: ['', Validators.required],
       password: ['', Validators.required],
-      adminToken: ['', Validators.required],
+      adminToken: [uuidv4(), Validators.required],
       isAdmin: [true],
     });
   }
@@ -50,7 +50,8 @@ export class RegisterAdminFormComponent implements OnInit {
   registerUserDb(form: any) {
     this.authAdminService.registerAdmin(form.value);
     console.log(this.form.value);
-    console.log('Data registration successful');
+    alert('Data registration successful');
+    this.router.navigate(['admin/login']);
   }
 
   redirectAdmin() {

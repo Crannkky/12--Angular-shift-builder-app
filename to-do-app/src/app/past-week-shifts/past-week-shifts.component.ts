@@ -24,19 +24,19 @@ export class PastWeekShiftsComponent implements OnInit {
   pastWeekShifts() {
     const shifts = this.expectedProp;
     const currentDate = new Date();
-    const currentWeekStart = new Date(
+    const prevWeekStart = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
-      currentDate.getDate() - currentDate.getUTCDay()
+      currentDate.getDate() - currentDate.getUTCDay() - 7
     );
-    const currentWeekEnd = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() + (6 - currentDate.getUTCDay())
+    const prevWeekEnd = new Date(
+      prevWeekStart.getFullYear(),
+      prevWeekStart.getMonth(),
+      prevWeekStart.getDate() + 6
     );
     this.filteredShift = shifts.filter((shift) => {
       const shiftDate = new Date(shift.startDate.seconds * 1000);
-      return shiftDate >= currentWeekStart && shiftDate <= currentWeekEnd;
+      return shiftDate >= prevWeekStart && shiftDate <= prevWeekEnd;
     });
     console.log('Filteredshifts', this.filteredShift);
   }

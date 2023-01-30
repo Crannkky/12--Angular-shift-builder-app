@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { LoginAdminFormComponent } from './admin/login-admin-form/login-admin-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
-import { RegisterAdminFormComponent } from './register-admin-form/register-admin-form.component';
+import { RegisterAdminFormComponent } from './admin/register-admin-form/register-admin-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AddShiftComponent } from './add-shift/add-shift.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'admin/register',
     component: RegisterAdminFormComponent,
+  },
+  {
+    path: 'admin/login',
+    component: LoginAdminFormComponent,
   },
   {
     path: 'my-shifts',

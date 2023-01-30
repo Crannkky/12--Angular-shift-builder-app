@@ -70,6 +70,16 @@
     </div>
     <div class="register__container__form__group">
       <input
+        type="text"
+        class="register__container__form__group__input"
+        placeholder="Admin Token..."
+        #adminToken
+        required
+        formControlName="adminToken"
+      />
+    </div>
+    <div class="register__container__form__group">
+      <input
         type="submit"
         class="register__container__form__group__btn"
         value="Register"
@@ -97,7 +107,7 @@
   <button
     type="button"
     class="register__container__redirect"
-    (click)="authAdminService.redirectAdminLogin()"
+    (click)="authAdminService.redirectAdminRegister()"
   >
     Already have an account? Login here!
   </button>

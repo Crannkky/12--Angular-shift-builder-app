@@ -11,8 +11,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
-import { RegisterAdminFormComponent } from './register-admin-form/register-admin-form.component';
-import { LoginAdminFormComponent } from './login-admin-form/login-admin-form.component';
+import { RegisterAdminFormComponent } from './admin/register-admin-form/register-admin-form.component';
+import { LoginAdminFormComponent } from './admin/login-admin-form/login-admin-form.component';
 import { AuthService } from './shared/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -26,6 +26,8 @@ import { NotifierModule } from 'angular-notifier';
 import { ProfitShiftComponent } from './profit-shift/profit-shift.component';
 import { MyShiftsComponent } from './my-shifts/my-shifts.component';
 import { PastWeekShiftsComponent } from './past-week-shifts/past-week-shifts.component';
+import { HomepageAdminComponent } from './admin/homepage-admin/homepage-admin.component';
+import { FilterShiftsComponent } from './filter-shifts/filter-shifts.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { PastWeekShiftsComponent } from './past-week-shifts/past-week-shifts.com
     ProfitShiftComponent,
     MyShiftsComponent,
     PastWeekShiftsComponent,
+    HomepageAdminComponent,
+    FilterShiftsComponent,
   ],
   imports: [
     BrowserModule,

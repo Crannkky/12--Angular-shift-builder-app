@@ -47,6 +47,22 @@ export class AuthAdminService {
       });
   }
 
+  LogInAdmin(email: string, password: string) {
+    return this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.SetAdminData(result.user);
+        this.afAuth.authState.subscribe((user) => {
+          if (user) {
+            this.router.navigate(['/admin/homepage']);
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+
   SetAdminData(admin: any) {
     const adminRef: AngularFirestoreDocument<any> = this.afs.doc(
       'adminAuth/${admin.id'
@@ -103,5 +119,9 @@ export class AuthAdminService {
 
   redirectAdminLogin() {
     this.router.navigate(['/admin/register']);
+  }
+
+  redirectAdminRegister() {
+    this.router.navigate(['/admin/login']);
   }
 }

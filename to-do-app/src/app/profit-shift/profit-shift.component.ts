@@ -39,7 +39,6 @@ export class ProfitShiftComponent implements OnInit, OnChanges {
 
   mostProfitableMonth() {
     const shifts = this.expectedProp;
-    console.log('Shifts: ', shifts);
     const monthProfit: {
       [month: number]: { month: number; totalProfit: number };
     } = shifts.reduce((acc: Shift, shift: Shift) => {
@@ -57,8 +56,7 @@ export class ProfitShiftComponent implements OnInit, OnChanges {
   }
 
   monthName() {
-    const date = new Date();
-    date.setMonth(this.bestMonth.month);
+    const date = new Date(0, this.bestMonth.month);
     this.bestMonth.monthName = this.datePipe.transform(date, 'MMM');
   }
 }

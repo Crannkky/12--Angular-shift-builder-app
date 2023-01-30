@@ -1,6 +1,6 @@
-@import "../../styles.scss";
+@import "../../../styles.scss";
 
-.login__container {
+.register__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,6 +24,11 @@
     letter-spacing: 0.5px;
     font-weight: 700;
     color: $primary-green;
+  }
+
+  &__sub__title {
+    font-size: 15px;
+    color: $secondary-green;
   }
 
   &__form {

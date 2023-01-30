@@ -1,0 +1,65 @@
+<div class="login__container">
+  <img class="login__container__logo" src="../../assets/logo.png" alt="logo" />
+  <div class="login__container__group">
+    <h3 class="login__container__title">Log In</h3>
+    <h3 class="login__container__sub__title">- admin -</h3>
+  </div>
+  <form action="submit" class="login__container__form">
+    <div class="login__container__form__group">
+      <input
+        type="text"
+        class="login__container__form__group__input"
+        placeholder="Email address..."
+        #email
+        required
+      />
+    </div>
+    <div class="login__container__form__group">
+      <input
+        type="password"
+        class="login__container__form__group__input"
+        placeholder="Password..."
+        #password
+        required
+      />
+    </div>
+    <div class="login__container__form__group">
+      <input
+        type="button"
+        class="login__container__form__group__btn"
+        value="Log In"
+        (click)="authAdminService.LogInAdmin(email.value, password.value)"
+      />
+    </div>
+    <div class="login__container__form__group">
+      <span class="login__container__form__group__or">Or</span>
+    </div>
+    <div class="login__container__form__group">
+      <button
+        type="button"
+        class="login__container__form__group__google"
+        (click)="authAdminService.GoogleAuth()"
+      >
+        Log In with Google
+        <img
+          class="google-icon"
+          src="../../assets/google_icon.png"
+          alt="google_icon"
+        />
+      </button>
+    </div>
+    <div class="login__container__form__group">
+      <button
+        (click)="redirectForgotPass()"
+        type="button"
+        class="login__container__redirect"
+      >
+        Forgot Password?
+      </button>
+    </div>
+  </form>
+
+  <button (click)="redirectLogin()" class="login__container__redirect">
+    Don't have an account? Register here!
+  </button>
+</div>
