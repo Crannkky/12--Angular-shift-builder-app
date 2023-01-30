@@ -27,7 +27,6 @@ import { ProfitShiftComponent } from './profit-shift/profit-shift.component';
 import { MyShiftsComponent } from './my-shifts/my-shifts.component';
 import { PastWeekShiftsComponent } from './past-week-shifts/past-week-shifts.component';
 import { HomepageAdminComponent } from './admin/homepage-admin/homepage-admin.component';
-import { FilterShiftsComponent } from './filter-shifts/filter-shifts.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +45,6 @@ import { FilterShiftsComponent } from './filter-shifts/filter-shifts.component';
     MyShiftsComponent,
     PastWeekShiftsComponent,
     HomepageAdminComponent,
-    FilterShiftsComponent,
   ],
   imports: [
     BrowserModule,

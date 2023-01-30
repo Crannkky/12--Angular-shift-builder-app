@@ -54,25 +54,21 @@ export class NextShiftComponent implements OnInit, OnDestroy, OnChanges {
 
   setShiftsTimeline() {
     const shifts = this.expectedProp;
-    console.log('Shifts:', shifts);
 
-    this.startDates = shifts.map((shift) => shift.startDate).sort();
-    console.log('Start Dates:', this.startDates);
+    this.startDates = shifts
+      .map((shift) => shift.startDate)
+      .sort((a, b) => a - b);
 
-    const previousStartDate = this.startDates.find(
-      (date) => this.parseDate(date) < this.currentDate
-    );
-    console.log('Previous start date:', previousStartDate);
+    const previousStartDate = this.startDates
+      .filter((date) => this.parseDate(date) < this.currentDate)
+      .pop();
 
     const nextStartDate = this.startDates.find(
       (date) => this.parseDate(date) > this.currentDate
     );
-    console.log('Next start date:', nextStartDate);
-    console.log('Current date:', this.currentDate);
 
     this.previousShift = previousStartDate;
-    console.log('Previous shift:', this.previousShift);
+
     this.nextShift = nextStartDate;
-    console.log('Next Shift:', this.nextShift);
   }
 }

@@ -1,9 +1,11 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <app-filter-shifts
-    [shiftsInput]="shifts"
-    (filteredShiftsOutput)="shifts = $event"
-  ></app-filter-shifts>
+  <div>
+    <input type="date" />
+    <input type="date" />
+    <input type="texts" placeholder="Location..." />
+    <button>Search</button>
+  </div>
 
   <table class="shifts__table">
     <tr class="shifts__table__row">
