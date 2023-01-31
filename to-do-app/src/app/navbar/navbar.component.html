@@ -1,7 +1,10 @@
 <div class="line"></div>
 <nav class="nav">
   <div class="nav__component">
-    <ul class="nav__component__list">
+    <div class="nav__component__hamburger" (click)="toggleNav()">
+      <p class="nav__component__hamburger__icon">&#9776;</p>
+    </div>
+    <ul class="nav__component__list" [ngClass]="{ 'nav-active': showNav }">
       <li class="nav__component__list__element">
         <a routerLink="/" class="nav__component__list__element__link"
           >Homepage</a

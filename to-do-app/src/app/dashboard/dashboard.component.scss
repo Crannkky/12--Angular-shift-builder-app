@@ -14,6 +14,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 15px;
     }
   }
 
@@ -25,7 +26,7 @@
   }
 
   &__element {
-    width: 60%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,10 +34,16 @@
     border-radius: 15px;
     border: 1px solid $primary-green;
     padding: 20px 40px;
-    box-shadow: 5px 5px;
+    box-shadow: $thin-box-shadow;
 
     &__img {
       height: 300px;
+    }
+
+    @media only screen and (max-width: 950px) {
+      &__img {
+        height: 100px;
+      }
     }
 
     &__data {
@@ -48,13 +55,14 @@
       &__form {
         display: flex;
         flex-direction: column;
-
         gap: 10px;
+
         &__group {
           display: flex;
           flex-direction: column;
           width: 300px;
           gap: 5px;
+
           label {
             color: $primary-green;
           }
@@ -92,6 +100,27 @@
           }
         }
       }
+    }
+    @media only screen and (max-width: 950px) {
+      &__data {
+        width: 100%;
+
+        &__form {
+          width: 100%;
+          &__group {
+            width: 100%;
+            &__input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 950px) {
+    &__element {
+      width: 90%;
     }
   }
 }

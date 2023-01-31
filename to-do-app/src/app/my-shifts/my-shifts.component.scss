@@ -10,7 +10,7 @@
   border-radius: 15px;
   border: 2px solid $primary-green;
   box-shadow: 5px 5px;
-  width: 87%;
+  min-width: 100px;
   margin: 20px auto;
 
   .shifts__table {

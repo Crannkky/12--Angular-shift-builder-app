@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   faPersonThroughWindow = faPersonThroughWindow;
   faPlus = faPlus;
   item;
+  showNav: boolean = false;
 
   constructor(public authService: AuthService, db: AngularFirestore) {
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
@@ -30,4 +31,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  toggleNav() {
+    this.showNav = !this.showNav;
+    console.log(this.showNav);
+  }
 }

@@ -18,6 +18,15 @@
     align-items: center;
     background-color: $secondary-beige;
 
+    &__hamburger {
+      color: $primary-green;
+      display: none;
+
+      &__icon {
+        font-size: 35px;
+      }
+    }
+
     &__name {
       font-size: 14px;
       background-color: $secondary-beige;
@@ -51,6 +60,7 @@
         }
       }
     }
+
     &__logo {
       height: 80px;
       background-color: $secondary-beige;
@@ -72,6 +82,80 @@
         background-color: $secondary-beige;
         color: $primary-green;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &__component {
+      &__list {
+        display: none;
+      }
+    }
+    .nav__component__list {
+      list-style: none;
+      display: none;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background-color: $background-gray;
+      z-index: 999;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      animation: dropdown-animation 0.3s ease-in-out;
+    }
+
+    .nav__component__hamburger {
+      display: block;
+      cursor: pointer;
+      padding: 10px;
+      font-size: 24px;
+      background-color: none;
+      transition: 0.5s ease-in-out;
+      &:hover {
+        scale: 1.3;
+        transition: 0.5s ease-in-out;
+      }
+    }
+
+    .nav__component__list.nav-active {
+      display: block;
+      transition: all 0.3s ease-in-out;
+    }
+
+    @keyframes dropdown-animation {
+      from {
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .nav__component__list__element {
+      margin: 10px 0;
+      transition: 0.5s ease-in-out;
+    }
+
+    .nav__component__list__element__link {
+      display: block;
+      color: $primary-green;
+      background-color: $background-gray;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    .nav__component__list__element__link:hover {
+      background-color: $primary-beige;
+      color: $primary-green;
     }
   }
 }

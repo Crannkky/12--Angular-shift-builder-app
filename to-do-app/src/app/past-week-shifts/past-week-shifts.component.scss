@@ -1,12 +1,18 @@
 @import "../../styles.scss";
 
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .shifts__table {
     border: 2px solid black;
+    width: 90%;
     padding: 20px;
     border-radius: 15px;
     background-color: $background-gray;
     border-spacing: 0;
+    box-shadow: $thin-box-shadow;
 
     &__title {
       color: $primary-green;
