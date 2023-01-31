@@ -29,16 +29,12 @@ export class ShiftsService {
   }
 
   addShift(shift: ShiftDate, creator: string) {
-    console.log('Start Date', shift.startDate);
-    console.log('End Date', shift.endDate);
     const startDate = this.datepipe.transform(
       shift.startDate,
       'yyy-MM-ddTHH:mm'
     );
-    console.log(startDate);
     const startMili = Date.parse(startDate);
     const endDate = this.datepipe.transform(shift.endDate, 'yyy-MM-ddTHH:mm');
-    console.log(endDate);
     const endMili = Date.parse(endDate);
     const totalHours = ((endMili - startMili) / (1000 * 60 * 60)).toFixed(1);
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
-import { Observable, subscribeOn } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { EditModalService } from '../shared/edit-modal.service';
 
@@ -30,7 +30,6 @@ export class EditModalComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    const loggedUser = JSON.parse(window.localStorage.getItem('user'));
     this.display$ = this.editModalService.watch();
 
     this.form = this.formBuilder.group({
@@ -45,15 +44,32 @@ export class EditModalComponent implements OnInit, OnChanges {
     });
   }
 
+  parseDate(date) {
+    if (typeof date === 'string') {
+      return new Date(date);
+    }
+    return date.toDate();
+  }
+
   ngOnChanges() {
-    console.log(this.expectedProp);
-    this.form.patchValue(this.expectedProp);
-    this.form.value.totalHours = this.expectedProp.totalHours;
-    console.log(this.form.value.totalHours);
-    this.form.value.totalProfit = Math.round(
-      this.form.value.hourlyWage * this.expectedProp.totalHours
-    ).toFixed(2);
-    console.log(this.form.value.totalProfit);
+    if (this.expectedProp) {
+      console.log(
+        'EndDate',
+        this.expectedProp.endDate,
+        'startDate',
+        this.expectedProp.startDate
+      );
+      this.form.setValue({
+        startDate: this.parseDate(this.expectedProp.startDate),
+        endDate: this.parseDate(this.expectedProp.endDate),
+        hourlyWage: this.expectedProp.hourlyWage,
+        totalHours: this.expectedProp.totalHours,
+        workPlace: this.expectedProp.workPlace,
+        shiftName: this.expectedProp.shiftName,
+        comments: this.expectedProp.comments,
+        totalProfit: this.expectedProp.totalProfit,
+      });
+    }
   }
 
   updateShift() {

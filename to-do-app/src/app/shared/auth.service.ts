@@ -11,6 +11,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { uuidv4 } from '@firebase/util';
 import { DatePipe } from '@angular/common';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class AuthService {
   firestoreCollection: AngularFirestoreCollection;
   firestoreCollectionAuth: AngularFirestoreCollection;
   firestoreCollectionShifts: AngularFirestoreCollection;
+  private readonly notifier: NotifierService;
 
   constructor(
     private firestore: AngularFirestore,
@@ -28,8 +30,11 @@ export class AuthService {
     public afAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    notifierService: NotifierService
   ) {
+    this.notifier = notifierService;
+
     this.firestoreCollection = firestore.collection('users');
     this.firestoreCollectionAuth = firestore.collection('usersAuth');
     this.firestoreCollectionShifts = firestore.collection('shifts');
@@ -58,6 +63,10 @@ export class AuthService {
         });
       })
       .catch((error) => {
+        this.notifier.notify(
+          'warning',
+          'Incorect credentials or account does not exist'
+        );
         console.log(error.message);
       });
   }
@@ -72,6 +81,7 @@ export class AuthService {
         console.log(result.user);
       })
       .catch((error) => {
+        this.notifier.notify('error', error.message);
         console.log(error.message);
       });
   }
@@ -80,8 +90,7 @@ export class AuthService {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
-        // this.router.navigate(['verify-email-address']);
-        console.log('Verification email sent!');
+        this.notifier.notify('success', 'Verification email sent!');
       });
   }
 
@@ -89,9 +98,13 @@ export class AuthService {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email was sent, check your inbox.');
+        this.notifier.notify(
+          'success',
+          'Password reset email was sent, check your inbox.'
+        );
       })
       .catch((error) => {
+        this.notifier.notify('error', error.message);
         console.log(error.message);
       });
   }
@@ -138,7 +151,6 @@ export class AuthService {
     };
     return userRef.set(userData, { merge: true });
   }
-  // Log-out function that removes the user details from localstorage which we use so that we can idnetify logged in users
 
   LogOut() {
     return this.afAuth.signOut().then(() => {
@@ -164,12 +176,12 @@ export class AuthService {
     this.userData
       .updatePassword(user.password)
       .then(() => {
-        console.log('Password updated successfully');
+        this.notifier.notify('success', 'Password updated successfully');
       })
       .catch((err) => {
+        this.notifier.notify('error', 'Something went wrong');
         console.log(err);
       });
-    console.log(user.email);
   }
 
   deleteUser(user: any) {

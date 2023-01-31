@@ -11,6 +11,7 @@
   align-items: center;
   background-color: $secondary-beige;
   border-bottom: solid 3px $primary-green;
+  box-shadow: $medium-box-shadow;
 
   &__component {
     display: flex;

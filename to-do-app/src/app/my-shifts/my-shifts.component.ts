@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { EditModalService } from '../shared/edit-modal.service';
 import { Shift } from '../shared/shift.interface';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-my-shifts',
@@ -14,11 +15,15 @@ export class MyShiftsComponent implements OnInit {
   selectedIndex;
   roundedProfit: number;
   filteredShifts: Array<Shift>;
+  private readonly notifier: NotifierService;
 
   constructor(
     private db: AngularFirestore,
-    private editModalService: EditModalService
+    private editModalService: EditModalService,
+    notifierService: NotifierService
   ) {
+    this.notifier = notifierService;
+
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
     db.collection<Shift>('shifts', (ref) =>
       ref.where('createdBy', '==', loggedUser.email)
@@ -53,7 +58,7 @@ export class MyShiftsComponent implements OnInit {
           doc.ref.delete();
         });
       });
-    alert('Shift was deleted!');
+    this.notifier.notify('error', 'Shift was deleted');
   }
 
   open(i) {

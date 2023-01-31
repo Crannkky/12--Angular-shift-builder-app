@@ -28,7 +28,7 @@
       border: 0.5px solid $primary-green;
       border-radius: 15px;
       background-color: $background-gray;
-      box-shadow: 5px 5px;
+      box-shadow: $thin-box-shadow;
 
       &__group {
         display: flex;

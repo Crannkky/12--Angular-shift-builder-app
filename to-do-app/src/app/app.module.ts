@@ -22,11 +22,22 @@ import { AddShiftComponent } from './add-shift/add-shift.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { DatePipe } from '@angular/common';
 import { NextShiftComponent } from './next-shift/next-shift.component';
-import { NotifierModule } from 'angular-notifier';
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { ProfitShiftComponent } from './profit-shift/profit-shift.component';
 import { MyShiftsComponent } from './my-shifts/my-shifts.component';
 import { PastWeekShiftsComponent } from './past-week-shifts/past-week-shifts.component';
 import { HomepageAdminComponent } from './admin/homepage-admin/homepage-admin.component';
+
+const customNotifierOptions: NotifierOptions = {
+  position: {
+    horizontal: {
+      position: 'left',
+    },
+    vertical: {
+      position: 'top',
+    },
+  },
+};
 
 @NgModule({
   declarations: [
@@ -60,7 +71,7 @@ import { HomepageAdminComponent } from './admin/homepage-admin/homepage-admin.co
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     FontAwesomeModule,
-    NotifierModule,
+    NotifierModule.withConfig(customNotifierOptions),
   ],
   providers: [AuthService, DatePipe],
   bootstrap: [AppComponent],

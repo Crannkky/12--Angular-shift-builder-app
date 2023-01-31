@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { DatePipe } from '@angular/common';
 import { ShiftsService } from '../shared/shifts.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-add-shift',
@@ -18,13 +19,17 @@ import { ShiftsService } from '../shared/shifts.service';
 })
 export class AddShiftComponent implements OnInit {
   form: FormGroup;
+  private readonly notifier: NotifierService;
 
   constructor(
     private formBuilder: FormBuilder,
     public shiftsService: ShiftsService,
     public router: Router,
-    public datepipe: DatePipe
-  ) {}
+    public datepipe: DatePipe,
+    notifierService: NotifierService
+  ) {
+    this.notifier = notifierService;
+  }
 
   ngOnInit(): void {
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
@@ -45,8 +50,7 @@ export class AddShiftComponent implements OnInit {
   addShift(form: any) {
     const loggedUser = JSON.parse(window.localStorage.getItem('user'));
     this.shiftsService.addShift(form.value, loggedUser.email);
-    alert('Shift added successfully!');
-    console.log(this.form.value);
+    this.notifier.notify('success', 'Shift added successfully!');
     this.router.navigate(['/']);
   }
 }
