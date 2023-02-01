@@ -27,6 +27,7 @@ import { ProfitShiftComponent } from './profit-shift/profit-shift.component';
 import { MyShiftsComponent } from './my-shifts/my-shifts.component';
 import { PastWeekShiftsComponent } from './past-week-shifts/past-week-shifts.component';
 import { HomepageAdminComponent } from './admin/homepage-admin/homepage-admin.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -56,6 +57,7 @@ const customNotifierOptions: NotifierOptions = {
     MyShiftsComponent,
     PastWeekShiftsComponent,
     HomepageAdminComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -53,12 +53,6 @@ export class EditModalComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.expectedProp) {
-      console.log(
-        'EndDate',
-        this.expectedProp.endDate,
-        'startDate',
-        this.expectedProp.startDate
-      );
       this.form.setValue({
         startDate: this.parseDate(this.expectedProp.startDate),
         endDate: this.parseDate(this.expectedProp.endDate),
@@ -84,7 +78,7 @@ export class EditModalComponent implements OnInit, OnChanges {
           doc.ref.update(data);
         });
       });
-    this.notifier.notify('success', 'Shift succesfully updated');
+    this.notifier.notify('success', 'Shift succesfully updated!');
     this.close();
   }
 

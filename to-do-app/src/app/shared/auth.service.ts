@@ -58,6 +58,7 @@ export class AuthService {
         this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
+            this.notifier.notify('success', 'Welcome!');
             this.router.navigate(['/']);
           }
         });
@@ -77,6 +78,7 @@ export class AuthService {
       .then((result) => {
         this.SendVerificationEmail();
         this.SetUserData(result.user);
+        this.notifier.notify('success', 'Account was registered successfully!');
         this.router.navigate(['/login']);
         console.log(result.user);
       })
@@ -114,15 +116,11 @@ export class AuthService {
     return user !== null;
   }
 
-  // && user.emailVerified != false ? true : false
-
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/']);
     });
   }
-
-  // Function that runs the auth logic providers
 
   AuthLogin(provider: any) {
     return this.afAuth
@@ -135,8 +133,6 @@ export class AuthService {
         console.log(error);
       });
   }
-
-  // Function that sets the user data when a user logs-in using email/password or social-auth in Firebase
 
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
@@ -176,7 +172,7 @@ export class AuthService {
     this.userData
       .updatePassword(user.password)
       .then(() => {
-        this.notifier.notify('success', 'Password updated successfully');
+        console.log('Updated user');
       })
       .catch((err) => {
         this.notifier.notify('error', 'Something went wrong');

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { EditModalService } from '../shared/edit-modal.service';
 import { Shift } from '../shared/shift.interface';
 import { NotifierService } from 'angular-notifier';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-my-shifts',
@@ -15,12 +16,14 @@ export class MyShiftsComponent implements OnInit {
   selectedIndex;
   roundedProfit: number;
   filteredShifts: Array<Shift>;
+  form: FormGroup;
   private readonly notifier: NotifierService;
 
   constructor(
     private db: AngularFirestore,
     private editModalService: EditModalService,
-    notifierService: NotifierService
+    notifierService: NotifierService,
+    private formBuilder: FormBuilder
   ) {
     this.notifier = notifierService;
 
@@ -54,18 +57,28 @@ export class MyShiftsComponent implements OnInit {
       .get()
       .subscribe((snapshot) => {
         snapshot.forEach((doc) => {
-          console.log('Delete', doc.data());
+          this.notifier.notify('error', 'Shift was deleted');
           doc.ref.delete();
         });
       });
-    this.notifier.notify('error', 'Shift was deleted');
   }
 
   open(i) {
     this.selectedIndex = i;
-    console.log('Modal opened!');
     this.editModalService.open();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      startDate: [''],
+      endDate: [''],
+      location: [''],
+    });
+  }
+
+  filterShifts() {
+    console.log(this.form.value);
+    console.log(new Date(this.form.value.startDate).getTime());
+    console.log(new Date(this.form.value.endDate).getTime());
+  }
 }

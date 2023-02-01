@@ -1,5 +1,15 @@
 <app-navbar></app-navbar>
 <div class="container">
+  <form [formGroup]="form" (ngSubmit)="filterShifts()">
+    <input formControlName="startDate" type="datetime-local" />
+    <input formControlName="endDate" type="datetime-local" />
+    <select formControlName="location">
+      <option value="The Office">The Office</option>
+      <option value="The Warehouse">The Warehouse</option>
+      <option value="On Site">On Site</option>
+    </select>
+    <button>Search</button>
+  </form>
   <table class="shifts__table">
     <tr class="shifts__table__row">
       <th class="shifts__table__row__head">Shift start date</th>

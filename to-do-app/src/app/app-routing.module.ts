@@ -9,6 +9,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AddShiftComponent } from './add-shift/add-shift.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { MyShiftsComponent } from './my-shifts/my-shifts.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
