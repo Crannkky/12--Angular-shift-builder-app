@@ -3,7 +3,10 @@ export interface Shift {
     seconds: number;
     nanoseconds: number;
   };
-  endDate: Date;
+  endDate: {
+    seconds: number;
+    nanoseconds: number;
+  };
   id: string;
   totalHours: number;
   hourlyWage: number;

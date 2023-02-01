@@ -4,6 +4,7 @@ import { EditModalService } from '../shared/edit-modal.service';
 import { Shift } from '../shared/shift.interface';
 import { NotifierService } from 'angular-notifier';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-shifts',
@@ -16,14 +17,17 @@ export class MyShiftsComponent implements OnInit {
   selectedIndex;
   roundedProfit: number;
   filteredShifts: Array<Shift>;
+  sortedShifts: any;
   form: FormGroup;
+  showSortedTable: boolean = false;
   private readonly notifier: NotifierService;
 
   constructor(
     private db: AngularFirestore,
     private editModalService: EditModalService,
     notifierService: NotifierService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public router: Router
   ) {
     this.notifier = notifierService;
 
@@ -74,11 +78,31 @@ export class MyShiftsComponent implements OnInit {
       endDate: [''],
       location: [''],
     });
+
+    this.sortedShifts = this.shifts;
+    console.log('OnInit', this.sortedShifts);
   }
 
   filterShifts() {
     console.log(this.form.value);
-    console.log(new Date(this.form.value.startDate).getTime());
-    console.log(new Date(this.form.value.endDate).getTime());
+    console.log(
+      'Start Date - Sort',
+      new Date(this.form.value.startDate).getTime() / 1000
+    );
+    console.log(
+      'End Date - sort',
+      new Date(this.form.value.endDate).getTime() / 1000
+    );
+    this.sortedShifts = this.filteredShifts = this.shifts.filter(
+      (shift) =>
+        shift.startDate.seconds >=
+          new Date(this.form.value.startDate).getTime() / 1000 &&
+        shift.endDate.seconds <=
+          new Date(this.form.value.endDate).getTime() / 1000
+    );
+    this.showSortedTable = true;
+    console.log('sorted shifts', this.sortedShifts);
+    this.form.reset();
+    return this.sortedShifts;
   }
 }

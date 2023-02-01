@@ -1,16 +1,19 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="filterShifts()">
-    <input formControlName="startDate" type="datetime-local" />
-    <input formControlName="endDate" type="datetime-local" />
-    <select formControlName="location">
-      <option value="The Office">The Office</option>
-      <option value="The Warehouse">The Warehouse</option>
-      <option value="On Site">On Site</option>
-    </select>
-    <button>Search</button>
+  <form [formGroup]="form" (ngSubmit)="filterShifts()" class="container__sort">
+    <input
+      formControlName="startDate"
+      type="datetime-local"
+      class="container__sort__input"
+    />
+    <input
+      formControlName="endDate"
+      type="datetime-local"
+      class="container__sort__input"
+    />
+    <button class="container__sort__btn">Search</button>
   </form>
-  <table class="shifts__table">
+  <table *ngIf="!showSortedTable" class="shifts__table">
     <tr class="shifts__table__row">
       <th class="shifts__table__row__head">Shift start date</th>
       <th class="shifts__table__row__head">Shift end date</th>
@@ -23,6 +26,47 @@
       <th class="shifts__table__row__head"></th>
     </tr>
     <tr class="shifts__table__row" *ngFor="let item of shifts; let i = index">
+      <td class="shifts__table__row__data">
+        {{ parseDate(item.startDate) }}
+      </td>
+      <td class="shifts__table__row__data">{{ parseDate(item.endDate) }}</td>
+      <td class="shifts__table__row__data">{{ item.totalHours }}</td>
+      <td class="shifts__table__row__data">{{ item.hourlyWage }} $</td>
+      <td class="shifts__table__row__data">{{ item.workPlace }}</td>
+      <td class="shifts__table__row__data">{{ item.shiftName }}</td>
+      <td class="shifts__table__row__data">{{ item.comments }}</td>
+      <td class="shifts__table__row__data">{{ item.totalProfit }} $</td>
+      <td class="shifts__table__row__data">
+        <button class="shifts__table__row__data__btn" (click)="open(i)">
+          Edit
+        </button>
+        <button
+          class="shifts__table__row__data__btn"
+          (click)="deleteDocument(item.id)"
+          style="background-color: red; border: 1px solid red; margin-top: 10px"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <table *ngIf="showSortedTable" class="shifts__table">
+    <tr class="shifts__table__row">
+      <th class="shifts__table__row__head">Shift start date</th>
+      <th class="shifts__table__row__head">Shift end date</th>
+      <th class="shifts__table__row__head">Total Hours</th>
+      <th class="shifts__table__row__head">Hourly Wage</th>
+      <th class="shifts__table__row__head">Shift Location</th>
+      <th class="shifts__table__row__head">Shift Name</th>
+      <th class="shifts__table__row__head">Comments</th>
+      <th class="shifts__table__row__head">Total Profit</th>
+      <th class="shifts__table__row__head"></th>
+    </tr>
+    <tr
+      class="shifts__table__row"
+      *ngFor="let item of sortedShifts; let i = index"
+    >
       <td class="shifts__table__row__data">
         {{ parseDate(item.startDate) }}
       </td>
